@@ -15,7 +15,7 @@ export const appRouter = (app, express) => {
   app.use("/auth", authRouter);
 
   // CORS
-  /* const whitelist = ["http://127.0.0.1:3000"];
+  const whitelist = ["http://127.0.0.1:5500"];
 
   app.use((req, res, next) => {
     console.log(req.header("origin"));
@@ -33,8 +33,7 @@ export const appRouter = (app, express) => {
     res.setHeader("Access-Control-Allow-Methods", "*");
     res.setHeader("Access-Control-Allow-Private-Network", true);
     return next();
-  }); */
-  app.use(cors());
+  });
 
   // not found page router
   app.all("*", (req, res, next) => {

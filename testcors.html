@@ -8,7 +8,7 @@
     <script>
         const button = document.getElementById("sendRequest");
         button.addEventListener("click", () => {
-            fetch("http://localhost:3000/api/endpoint", {
+            fetch("https://voice-verse-rho.vercel.app/auth/logout", {
                 method: "GET",
             })
             .then(response => response.json())
