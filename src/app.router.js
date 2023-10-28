@@ -8,13 +8,19 @@ export const appRouter = (app, express) => {
     app.use(morgan("dev"));
   }
 
-  app.use(express.json())
+  app.use(express.json());
 
   //routes
   //auth
   app.use("/auth", authRouter);
 
-  app.use(cors("*"));
+  app.use(
+    cors({
+      origin: "*",
+      methods: "GET,POST,PUT,DELETE", // Specify allowed HTTP methods
+    })
+  );
+
   // not found page router
   app.all("*", (req, res, next) => {
     return next(new Error("page not found!", { cause: 404 }));
