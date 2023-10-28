@@ -14,9 +14,29 @@ export const appRouter = (app, express) => {
   //auth
   app.use("/auth", authRouter);
 
+  // CORS
+  /* const whitelist = ["http://127.0.0.1:3000"];
+
+  app.use((req, res, next) => {
+    console.log(req.header("origin"));
+
+    if (req.originlURl.includes("/auth/confirmEmail")) {
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Access-Control-Allow-Methods", "*");
+      return next();
+    }
+    if (!whitelist.includes(req.header("origin"))) {
+      return next(new Error("Blocked by CORS!"));
+    }
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Headers", "*");
+    res.setHeader("Access-Control-Allow-Methods", "*");
+    res.setHeader("Access-Control-Allow-Private-Network", true);
+    return next();
+  }); */
   app.use(
     cors({
-      origin: "*",
+      origin: "http://127.0.0.1:3000",
       methods: "GET,POST,PUT,DELETE", // Specify allowed HTTP methods
     })
   );
