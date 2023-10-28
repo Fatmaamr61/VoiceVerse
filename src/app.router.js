@@ -20,18 +20,21 @@ export const appRouter = (app, express) => {
   app.use((req, res, next) => {
     console.log(req.header("origin"));
 
-    if (req.originlURl.includes("/auth/confirmEmail")) {
+    if (req.originalURl.includes("/auth/confirmEmail")) {
       res.setHeader("Access-Control-Allow-Origin", "*");
       res.setHeader("Access-Control-Allow-Methods", "*");
       return next();
     }
-    if (!whitelist.includes(req.header("origin"))) {
-      return next(new Error("Blocked by CORS!"));
+    const origin = req.get("origin");
+
+    if (origin && whitelist.includes(origin)) {
+      // Allow requests from whitelisted origins
+      res.setHeader("Access-Control-Allow-Origin", origin);
+      res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+      res.setHeader("Access-Control-Allow-Headers", "*");
+      res.setHeader("Access-Control-Allow-Credentials", true);
     }
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Headers", "*");
-    res.setHeader("Access-Control-Allow-Methods", "*");
-    res.setHeader("Access-Control-Allow-Private-Network", true);
+
     return next();
   });
 
