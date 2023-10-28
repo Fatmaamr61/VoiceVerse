@@ -20,7 +20,7 @@ export const appRouter = (app, express) => {
   app.use((req, res, next) => {
     console.log(req.header("origin"));
 
-    if (req.originalURl.includes("/auth/confirmEmail")) {
+    if (req.originalUrl.includes("/auth/confirmEmail")) {
       res.setHeader("Access-Control-Allow-Origin", "*");
       res.setHeader("Access-Control-Allow-Methods", "*");
       return next();
