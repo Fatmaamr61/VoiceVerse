@@ -34,7 +34,7 @@ export const appRouter = (app, express) => {
     res.setHeader("Access-Control-Allow-Private-Network", true);
     return next();
   }); */
-  app.option("*", cors());
+  app.use(cors());
 
   // not found page router
   app.all("*", (req, res, next) => {
