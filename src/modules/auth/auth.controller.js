@@ -101,7 +101,7 @@ export const login = asyncHandler(async (req, res, next) => {
   });
 
   // send response
-  return res.json({ success: true, token: token, results: "home-page"});
+  return res.json({ success: true, token: token, results: "home-page" });
 });
 
 export const changePassword = asyncHandler(async (req, res, next) => {
@@ -155,6 +155,14 @@ export const sendForgetCode = asyncHandler(async (req, res, next) => {
   }))
     ? res.json({ success: true, results: "check your email!" })
     : next(new Error("something went wrong"));
+});
+
+export const setForgetCode = asyncHandler(async (req, res, next) => {
+  // check forget code
+  let user = await User.findOne({ forgetCode: req.body.forgetCode });
+  if (!user) return next(new Error("Invalid code!", { cause: 400 }));
+
+  return res.status(200 ).json({ success: true, result: "valid code" });
 });
 
 export const resetPassword = asyncHandler(async (req, res, next) => {

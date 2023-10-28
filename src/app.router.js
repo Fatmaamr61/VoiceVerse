@@ -14,7 +14,7 @@ export const appRouter = (app, express) => {
   //auth
   app.use("/auth", authRouter);
 
-  app.use(cors());
+  app.use(cors("*"));
   // not found page router
   app.all("*", (req, res, next) => {
     return next(new Error("page not found!", { cause: 404 }));

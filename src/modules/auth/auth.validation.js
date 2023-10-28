@@ -50,7 +50,7 @@ export const changePasswordSchema = joi
   .required();
 
 // send forget code
-export const forgetCodeSchema = joi
+export const sendForgetCodeSchema = joi
   .object({
     email: joi
       .string()
@@ -60,6 +60,13 @@ export const forgetCodeSchema = joi
         tlds: { allow: ["com", "net", "edu", "org"] },
       })
       .required(),
+  })
+  .required();
+  
+// set forget code
+export const setForgetCodeSchema = joi
+  .object({
+    forgetCode: joi.string().required(),
   })
   .required();
 

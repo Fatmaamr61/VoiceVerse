@@ -3,10 +3,11 @@ import { isValid } from "../../middlewares/validation.middleware.js";
 import {
   activateSchema,
   changePasswordSchema,
-  forgetCodeSchema,
+  sendForgetCodeSchema,
   loginSchema,
   registerSchema,
   resetPasswordSchema,
+  setForgetCodeSchema,
 } from "./auth.validation.js";
 import {
   activateAccount,
@@ -43,7 +44,10 @@ router.patch(
 );
 
 // send forget password code
-router.patch("/forgetCode", isValid(forgetCodeSchema), sendForgetCode);
+router.patch("/forgetCode/send", isValid(sendForgetCodeSchema), sendForgetCode);
+
+// set forget code
+router.patch("/forgetCode/set", isValid(setForgetCodeSchema));
 
 // reset password
 router.patch("/resetPassword", isValid(resetPasswordSchema), resetPassword);
