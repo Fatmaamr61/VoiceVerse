@@ -34,12 +34,7 @@ export const appRouter = (app, express) => {
     res.setHeader("Access-Control-Allow-Private-Network", true);
     return next();
   }); */
-  app.use(
-    cors({
-      origin: "http://127.0.0.1:3000",
-      methods: "GET,POST,PUT,DELETE", // Specify allowed HTTP methods
-    })
-  );
+  app.option("*", cors());
 
   // not found page router
   app.all("*", (req, res, next) => {
