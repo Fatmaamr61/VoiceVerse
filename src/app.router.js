@@ -15,8 +15,6 @@ export const appRouter = (app, express) => {
   app.use("/auth", authRouter);
 
   // CORS
-  const whitelist = ["http://127.0.0.1:3007"];
-
   app.use((req, res, next) => {
     console.log(req.header("origin"));
 
@@ -25,17 +23,6 @@ export const appRouter = (app, express) => {
       res.setHeader("Access-Control-Allow-Methods", "*");
       return next();
     }
-    const origin = req.get("origin");
-
-    if (origin && whitelist.includes(origin)) {
-      // Allow requests from whitelisted origins
-      res.setHeader("Access-Control-Allow-Origin", origin);
-      res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-      res.setHeader("Access-Control-Allow-Headers", "*");
-      res.setHeader("Access-Control-Allow-Credentials", true);
-    }
-
-    return next();
   });
 
   // not found page router
