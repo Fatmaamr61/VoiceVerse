@@ -15,7 +15,7 @@ export const appRouter = (app, express) => {
   app.use("/auth", authRouter);
 
   // CORS
-  const whitelist = ["http://127.0.0.1:3000"];
+  const whitelist = ["http://127.0.0.1:3007"];
 
   app.use((req, res, next) => {
     console.log(req.header("origin"));
