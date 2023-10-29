@@ -16,8 +16,6 @@ export const appRouter = (app, express) => {
 
   // CORS
   app.use((req, res, next) => {
-    console.log(req.header("origin"));
-
     if (req.originalUrl.includes("/auth/confirmEmail")) {
       res.setHeader("Access-Control-Allow-Origin", "*");
       res.setHeader("Access-Control-Allow-Methods", "*");
