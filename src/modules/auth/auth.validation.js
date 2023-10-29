@@ -13,6 +13,7 @@ export const registerSchema = joi
         tlds: { allow: ["com", "net", "edu", "org"] },
       })
       .required(),
+    phone: joi.string().required(),
     password: joi.string().required(),
     cPassword: joi.string().valid(joi.ref("password")).required(),
   })
@@ -62,7 +63,7 @@ export const sendForgetCodeSchema = joi
       .required(),
   })
   .required();
-  
+
 // set forget code
 export const setForgetCodeSchema = joi
   .object({
