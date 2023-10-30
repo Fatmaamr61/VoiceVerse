@@ -15,7 +15,7 @@ export const appRouter = (app, express) => {
   app.use("/auth", authRouter);
 
   // CORS
-  const whitelist = ["http://*:3000", "http://0.0.0.0:3000"]
+  const whitelist = ["http://*", "http://0.0.0.0:3000"]
   app.use((req, res, next) => {
     if (req.originalUrl.includes("/auth/confirmEmail")) {
       res.setHeader("Access-Control-Allow-Origin", "*");
