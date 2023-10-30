@@ -13,7 +13,7 @@ import randomstring from "randomstring";
 
 export const register = asyncHandler(async (req, res, next) => {
   // data from request
-  const { firstName, lastName, email, password } = req.body;
+  const { firstName, lastName, email, password, phone} = req.body;
 
   // check user existance
   const isUser = await User.findOne({ email });
@@ -33,6 +33,7 @@ export const register = asyncHandler(async (req, res, next) => {
     email,
     password: hashPassword,
     activationCode,
+    phone
   });
 
   // create confirmation link
