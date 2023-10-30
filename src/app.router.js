@@ -9,11 +9,11 @@ export const appRouter = (app, express) => {
   }
 
   const corsOpts = {
-     origin: "*",
+    origin: "*",
 
-     methods: ["GET", "POST"],
+    methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
 
-     allowedHeaders: ["Content-Type"],
+    allowedHeaders: ["Content-Type"],
   };
 
   app.use(cors(corsOpts));
