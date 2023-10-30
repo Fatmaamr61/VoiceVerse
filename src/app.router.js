@@ -3,20 +3,20 @@ import morgan from "morgan";
 import cors from "cors";
 
 export const appRouter = (app, express) => {
-  
-  const corsOpts = {
-    origin: "*",
-
-    methods: ["GET", "POST"],
-
-    allowedHeaders: ["Content-Type"],
-  };
-
-  app.use(cors(corsOpts));
   // morgan
   if (process.env.NODE_ENV == "dev") {
     app.use(morgan("dev"));
   }
+
+  const corsOpts = {
+     origin: "*",
+
+     methods: ["GET", "POST"],
+
+     allowedHeaders: ["Content-Type"],
+  };
+
+  app.use(cors(corsOpts));
 
   app.use(express.json());
 
