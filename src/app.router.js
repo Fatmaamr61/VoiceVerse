@@ -15,16 +15,17 @@ export const appRouter = (app, express) => {
   app.use("/auth", authRouter);
 
   // CORS
-  const whitelist = ["http://*", "http://0.0.0.0:3000"]
+  const whitelist = ["http://*:3007", "http://0.0.0.0:3000"]
   app.use((req, res, next) => {
+    console.log(req.header);
     if (req.originalUrl.includes("/auth/confirmEmail")) {
       res.setHeader("Access-Control-Allow-Origin", "*");
       res.setHeader("Access-Control-Allow-Methods", "*");
       return next();
     }
-    if (!whitelist.includes(req.header("origin"))) {
+   /*  if (!whitelist.includes(req.header("origin"))) {
       return next(new Error("Blocked by CORS!"));
-    }
+    } */
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Headers", "*");
     res.setHeader("Access-Control-Allow-Methods", "*");
