@@ -18,6 +18,7 @@ export const registerSchema = joi
     cPassword: joi.string().valid(joi.ref("password")).required(),
   })
   .required();
+  console.log("validation completed");
 
 // activate account
 export const activateSchema = joi
