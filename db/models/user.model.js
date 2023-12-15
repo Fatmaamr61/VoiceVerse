@@ -45,6 +45,8 @@ const userSchema = new Schema(
         type: String,
         default: "VoiceVerse%20defaults/user/userDefaultProfile",
       },
+      googleId: String,
+      displayName: String,
     },
   },
   { timestamps: true }

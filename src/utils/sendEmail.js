@@ -13,6 +13,7 @@ export const sendEmail = async ({ to, subject, html, attachments }) => {
     },
   });
   // reciever Info
+
   const emailInfo = await transporter.sendMail({
     from: ` "VoiceVerse" <${process.env.SENDERMAIL}>`, // sender address
     to,
@@ -23,3 +24,6 @@ export const sendEmail = async ({ to, subject, html, attachments }) => {
 
   return emailInfo.accepted.lenght < 1 ? false : true;
 };
+
+
+

@@ -1,6 +1,10 @@
 import authRouter from "./modules/auth/auth.router.js";
 import morgan from "morgan";
 import cors from "cors";
+import passport from "passport";
+import session from "express-session";
+
+
 
 export const appRouter = (app, express) => {
   // morgan
@@ -20,28 +24,17 @@ export const appRouter = (app, express) => {
 
   app.use(express.json());
 
+  // Configure express-session middleware
+  app.use(
+    session({
+      secret: "your-secret-key",
+      resave: false,
+      saveUninitialized: true,
+    })
+  );
   //routes
   //auth
   app.use("/auth", authRouter);
-
-  // CORS
-  // const whitelist = ["http://*:3007", "http://0.0.0.0:3000"]
-  // app.use((req, res, next) => {
-  //   console.log(req.header);
-  //   if (req.originalUrl.includes("/auth/confirmEmail")) {
-  //     res.setHeader("Access-Control-Allow-Origin", "*");
-  //     res.setHeader("Access-Control-Allow-Methods", "*");
-  //     return next();
-  //   }
-  //  /*  if (!whitelist.includes(req.header("origin"))) {
-  //     return next(new Error("Blocked by CORS!"));
-  //   } */
-  //   res.setHeader("Access-Control-Allow-Origin", "*");
-  //   res.setHeader("Access-Control-Allow-Headers", "*");
-  //   res.setHeader("Access-Control-Allow-Methods", "*");
-  //   res.setHeader("Access-Control-Allow-Private-Network", true);
-  //   return next();
-  // });
 
   // not found page router
   app.all("*", (req, res, next) => {

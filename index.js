@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { appRouter } from "./src/app.router.js";
 import { connectionDB } from "./db/connection.js";
 
+
 connectionDB();
 dotenv.config();
 

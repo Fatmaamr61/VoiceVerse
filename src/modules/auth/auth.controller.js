@@ -13,7 +13,7 @@ import randomstring from "randomstring";
 
 export const register = asyncHandler(async (req, res, next) => {
   // data from request
-  const { firstName, lastName, email, password, phone} = req.body;
+  const { firstName, lastName, email, password, phone } = req.body;
 
   // check user existance
   const isUser = await User.findOne({ email });
@@ -33,7 +33,7 @@ export const register = asyncHandler(async (req, res, next) => {
     email,
     password: hashPassword,
     activationCode,
-    phone
+    phone,
   });
 
   // create confirmation link
@@ -105,6 +105,10 @@ export const login = asyncHandler(async (req, res, next) => {
   return res.json({ success: true, token: token, results: "home-page" });
 });
 
+export const googlescucess = asyncHandler(async (req, res, next) => {
+  return res.json({ success: true, result: "home page" });
+});
+
 export const changePassword = asyncHandler(async (req, res, next) => {
   // data from request
   let { oldPassword, newPassword } = req.body;
@@ -163,7 +167,7 @@ export const setForgetCode = asyncHandler(async (req, res, next) => {
   let user = await User.findOne({ forgetCode: req.body.forgetCode });
   if (!user) return next(new Error("Invalid code!", { cause: 400 }));
 
-  return res.status(200 ).json({ success: true, result: "valid code" });
+  return res.status(200).json({ success: true, result: "valid code" });
 });
 
 export const resetPassword = asyncHandler(async (req, res, next) => {
