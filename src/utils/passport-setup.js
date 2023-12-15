@@ -23,6 +23,7 @@ import { Strategy as GoogleStrategy } from "passport-google-oidc";
 import { User } from "../../db/models/user.model.js";
 import { FederatedCredentials } from "../../db/models/federatedCredentials.model.js";
 import dotenv from "dotenv";
+import { asyncHandler } from "./asyncHandler.js";
 dotenv.config();
 
 passport.use(
@@ -30,7 +31,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/oauth2/redirect/google",
+      callbackURL: "http://voice-verse-rho.vercel.app/oauth2/redirect/google",
       scope: ["profile"],
     },
     async (accessToken, refreshToken, profile, cb) => {

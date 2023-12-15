@@ -18,7 +18,7 @@ import {
   login,
   register,
   resetPassword,
-  sendForgetCode,
+  sendForgetCode
 } from "./auth.controller.js";
 import { isAuthenticated } from "../../middlewares/Authentication.middleware.js";
 const router = Router();
@@ -40,11 +40,11 @@ router.post("/login", isValid(loginSchema), login);
 // login with google
 router.get("/login/google", passport.authenticate("google"));
 
-/* router.get(
-  "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/failed" }),
+router.get(
+  "/oauth2/redirect/google",
+  passport.authenticate("google"),
   googlescucess
-); */
+);
 
 // change password
 router.patch(
