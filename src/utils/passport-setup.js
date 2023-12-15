@@ -35,13 +35,14 @@ passport.use(
       scope: ["profile"],
     },
     async (accessToken, refreshToken, profile, cb) => {
+        console.log(profile);
       try {
         const federatedCredentials = await FederatedCredentials.findOne({
           provider: "google",
           subject: profile.id,
         });
 
-        if (!federatedCredentials) {
+        if (federatedCredentials.lenght<1) {
           const newUser = new User({
             name: profile.displayName,
           });
