@@ -8,11 +8,11 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_Id,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "https://voice-verse-rho.vercel.app/oauth2/redirect/google",
+      //callbackURL: "https://voice-verse-rho.vercel.app/oauth2/redirect/google",
       scope: ["profile"],
     },
     (request, accessToken, refreshToken, profile, cb) => {
-      console.log(profile.id);
+      console.log("profile iD >>>>  ", profile.id);
       //return cb(null, profile);
     }
   )
