@@ -35,38 +35,31 @@ passport.use(
       scope: ["profile"],
     },
     async (accessToken, refreshToken, profile, cb) => {
-        console.log(profile);
+      console.log(profile);
       try {
         const federatedCredentials = await FederatedCredentials.findOne({
           provider: "google",
           subject: profile.id,
         });
 
-        if (federatedCredentials.lenght<1) {
-          const newUser = new User({
+        if (federatedCredentials.lenght < 1) {
+          const newFederatedUser = await FederatedCredentials.create({
             name: profile.displayName,
-          });
-
-          const savedUser = await newUser.save();
-
-          const newFederatedCredentials = new FederatedCredentials({
-            user_id: savedUser._id,
             provider: "google",
             subject: profile.id,
-            // Add other fields as needed
           });
 
-          await newFederatedCredentials.save();
-
-          return cb(null, savedUser);
+          return cb(null, newFederatedUser);
         } else {
-          const user = await User.findById(federatedCredentials.user_id);
+         /*  const FederatedUser = await FederatedCredentials.findById(
+            federatedCredentials.user_id
+          ); */
 
-          if (!user) {
+          /* if (!user) {
             return cb(null, false);
           }
-
-          return cb(null, user);
+ */       
+        return cb(null, "user exist");
         }
       } catch (err) {
         return cb(err);

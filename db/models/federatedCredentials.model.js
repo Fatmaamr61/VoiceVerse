@@ -1,11 +1,8 @@
-import { Schema, Types, model } from "mongoose";
+import { Schema, model } from "mongoose";
 
 // FederatedCredentials model
 const federatedCredentialsSchema = new Schema({
-  user_id: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
+  userName: String,
   provider: String,
   subject: String,
 });
