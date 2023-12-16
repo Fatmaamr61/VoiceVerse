@@ -23,11 +23,14 @@ export const appRouter = (app, express) => {
 
   app.use(express.json());
 
+  app.set("trust proxy", 1); // trust first proxy
+
   app.use(
     session({
-      secret: process.env.EXP_SESSION_SECRET,
+      secret: "keyboard cat",
       resave: false,
       saveUninitialized: true,
+      cookie: { secure: true },
     })
   );
 
