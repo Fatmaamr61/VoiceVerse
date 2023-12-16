@@ -13,7 +13,7 @@ import randomstring from "randomstring";
 
 export const register = asyncHandler(async (req, res, next) => {
   // data from request
-  const { firstName, lastName, email, password, phone } = req.body;
+  const { firstName, lastName, email, userName, password} = req.body;
 
   // check user existance
   const isUser = await User.findOne({ email });
@@ -31,9 +31,9 @@ export const register = asyncHandler(async (req, res, next) => {
     firstName,
     lastName,
     email,
+    userName,
     password: hashPassword,
     activationCode,
-    phone,
   });
 
   // create confirmation link
@@ -105,7 +105,7 @@ export const login = asyncHandler(async (req, res, next) => {
   return res.json({ success: true, token: token, results: "home-page" });
 });
 
-export const googlescucess = asyncHandler(async (req, res, next) => {
+export const googleSuccess = asyncHandler(async (req, res, next) => {
   return res.json({ success: true, result: "home page" });
 });
 

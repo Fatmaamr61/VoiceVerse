@@ -1,70 +1,47 @@
-/* import passport from "passport";
-import { Strategy as GoogleStrategy } from "passport-google-oidc";
-import dotenv from "dotenv";
-dotenv.config();
-
-passport.use(
-  new GoogleStrategy(
-    {
-      clientID: process.env.GOOGLE_CLIENT_Id,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "https://voice-verse-rho.vercel.app/oauth2/redirect/google",
-      scope: ["profile"],
-    },
-    (request, accessToken, refreshToken, profile, cb) => {
-      console.log("profile iD >>>>  ", profile.id);
-      //return cb(null, profile);
-    }
-  )
-); */
-
 import passport from "passport";
-import { Strategy as GoogleStrategy } from "passport-google-oidc";
+import GoogleStrategy from "passport-google-oauth20";
 import { User } from "../../db/models/user.model.js";
-import { FederatedCredentials } from "../../db/models/federatedCredentials.model.js";
 import dotenv from "dotenv";
 import { asyncHandler } from "./asyncHandler.js";
 dotenv.config();
+
+passport.serializeUser((user, done) => {
+  console.log("user from seria", user);
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  console.log("user id from des", id);
+  const user = await User.findById(id);
+  done(null, user);
+});
 
 passport.use(
   new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "http://voice-verse-rho.vercel.app/oauth2/redirect/google",
-      scope: ["profile"],
+      callbackURL: "http://localhost:3006/auth/redirect/google",
     },
-    async (accessToken, refreshToken, profile, cb) => {
+    asyncHandler(async (accessToken, refreshToken, profile, done) => {
+      console.log("redirect FIRED!");
+      const currentUser = await User.findOne({ googleId: profile.id });
       console.log(profile);
-      try {
-        const federatedCredentials = await FederatedCredentials.findOne({
-          provider: "google",
-          subject: profile.id,
+      if (currentUser) {
+        console.log("user exist");
+        done(null, currentUser);
+      } else {
+        console.log("user created");
+        const newUser = await User.create({
+          firstName: profile.name.givenName,
+          lastName: profile.name.familyName,
+          userName: profile.displayName,
+          googleId: profile.id,
+          isConfirmed: true,
         });
-
-        if (federatedCredentials.lenght < 1) {
-          const newFederatedUser = await FederatedCredentials.create({
-            name: profile.displayName,
-            provider: "google",
-            subject: profile.id,
-          });
-
-          return cb(null, newFederatedUser);
-        } else {
-         /*  const FederatedUser = await FederatedCredentials.findById(
-            federatedCredentials.user_id
-          ); */
-
-          /* if (!user) {
-            return cb(null, false);
-          }
- */       
-        return cb(null, "user exist");
-        }
-      } catch (err) {
-        return cb(err);
+        done(null, newUser);
       }
-    }
+    })
   )
 );
 

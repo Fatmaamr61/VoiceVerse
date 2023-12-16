@@ -13,16 +13,16 @@ import {
   activateAccount,
   changePassword,
   deleteAccount,
-  googlescucess,
+  googleSuccess,
   logOut,
   login,
   register,
   resetPassword,
-  sendForgetCode
+  sendForgetCode,
 } from "./auth.controller.js";
 import { isAuthenticated } from "../../middlewares/Authentication.middleware.js";
-const router = Router();
 import passport from "../../utils/passport-setup.js";
+const router = Router();
 
 // register
 router.post("/register", isValid(registerSchema), register);
@@ -37,14 +37,11 @@ router.get(
 // login
 router.post("/login", isValid(loginSchema), login);
 
-// login with google
-router.get("/login/google", passport.authenticate("google"));
+// google login
+router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
 
-router.get(
-  "/oauth2/redirect/google",
-  passport.authenticate("google"),
-  googlescucess
-);
+// google redirect callback url
+router.get("/redirect/google", passport.authenticate("google"), googleSuccess);
 
 // change password
 router.patch(

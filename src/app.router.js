@@ -1,10 +1,9 @@
 import authRouter from "./modules/auth/auth.router.js";
 import morgan from "morgan";
 import cors from "cors";
-import passport from "passport";
 import session from "express-session";
-
-
+import cookieSession from "cookie-session";
+import passport from "passport";
 
 export const appRouter = (app, express) => {
   // morgan
@@ -24,14 +23,25 @@ export const appRouter = (app, express) => {
 
   app.use(express.json());
 
-  // Configure express-session middleware
   app.use(
     session({
-      secret: "your-secret-key",
+      secret: process.env.EXP_SESSION_SECRET,
       resave: false,
       saveUninitialized: true,
     })
   );
+
+  app.use(
+    cookieSession({
+      maxAge: 24 * 60 * 60 * 1000,
+      keys: process.env.COOKIE_KEYS,
+    })
+  );
+
+  // intialize passport
+  app.use(passport.initialize());
+  app.use(passport.session());
+
   //routes
   //auth
   app.use("/auth", authRouter);

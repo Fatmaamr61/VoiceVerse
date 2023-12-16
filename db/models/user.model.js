@@ -5,29 +5,23 @@ const userSchema = new Schema(
   {
     firstName: {
       type: String,
-      required: true,
       min: 3,
       max: 20,
     },
     lastName: {
       type: String,
-      required: true,
       min: 3,
       max: 20,
     },
+    userName: String,
     email: {
       type: String,
       unique: true,
-      required: true,
       lowercase: true,
     },
+    googleId: String,
     password: {
       type: String,
-      required: true,
-    },
-    phone: {
-      type: String,
-      required: true,
     },
     isConfirmed: {
       type: Boolean,
@@ -45,8 +39,6 @@ const userSchema = new Schema(
         type: String,
         default: "VoiceVerse%20defaults/user/userDefaultProfile",
       },
-      googleId: String,
-      displayName: String,
     },
   },
   { timestamps: true }

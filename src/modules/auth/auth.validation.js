@@ -5,6 +5,7 @@ export const registerSchema = joi
   .object({
     firstName: joi.string().min(3).max(20).required(),
     lastName: joi.string().min(3).max(20).required(),
+    userName: joi.string().min(3).max(20).required(),
     email: joi
       .string()
       .email({
@@ -13,7 +14,6 @@ export const registerSchema = joi
         tlds: { allow: ["com", "net", "edu", "org"] },
       })
       .required(),
-    phone: joi.string().required(),
     password: joi.string().required(),
     cPassword: joi.string().valid(joi.ref("password")).required(),
   })
