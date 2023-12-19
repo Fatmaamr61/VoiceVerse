@@ -1,9 +1,9 @@
 import authRouter from "./modules/auth/auth.router.js";
 import morgan from "morgan";
 import cors from "cors";
-import session from "express-session";
+/* import session from "express-session";
 import cookieSession from "cookie-session";
-import passport from "passport";
+import passport from "passport"; */
 
 export const appRouter = (app, express) => {
   // morgan

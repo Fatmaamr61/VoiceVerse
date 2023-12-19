@@ -16,6 +16,7 @@ import {
   googleSuccess,
   logOut,
   login,
+  profile,
   register,
   resetPassword,
   sendForgetCode,
@@ -36,6 +37,9 @@ router.get(
 
 // login
 router.post("/login", isValid(loginSchema), login);
+
+// user profile
+router.get("/profile", profile);
 
 /* // google login
 router.get("/google", passport.authenticate("google", { scope: ["profile"] }));

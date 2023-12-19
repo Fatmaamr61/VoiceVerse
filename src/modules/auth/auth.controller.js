@@ -13,7 +13,7 @@ import randomstring from "randomstring";
 
 export const register = asyncHandler(async (req, res, next) => {
   // data from request
-  const { firstName, lastName, email, userName, password} = req.body;
+  const { firstName, lastName, email, userName, password } = req.body;
 
   // check user existance
   const isUser = await User.findOne({ email });
@@ -103,6 +103,16 @@ export const login = asyncHandler(async (req, res, next) => {
 
   // send response
   return res.json({ success: true, token: token, results: "home-page" });
+});
+
+export const profile = asyncHandler(async (req, res, next) => {
+  const id = req.user._id;
+
+  const user = await User.findById(id);
+
+  if (!user) return next(new Error("user not found", { cause: 404 }));
+
+  return res.json({ success: true, result: user });
 });
 
 export const googleSuccess = asyncHandler(async (req, res, next) => {
