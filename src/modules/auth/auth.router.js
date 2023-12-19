@@ -39,7 +39,7 @@ router.get(
 router.post("/login", isValid(loginSchema), login);
 
 // user profile
-router.get("/profile", profile);
+router.get("/profile", isAuthenticated, profile);
 
 /* // google login
 router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
