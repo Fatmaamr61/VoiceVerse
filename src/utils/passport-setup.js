@@ -1,4 +1,4 @@
-import passport from "passport";
+/* import passport from "passport";
 import GoogleStrategy from "passport-google-oauth20";
 import { User } from "../../db/models/user.model.js";
 import dotenv from "dotenv";
@@ -29,7 +29,7 @@ passport.use(
       console.log(profile);
       if (currentUser) {
         console.log("user exist");
-        done(null, currentUser);
+        //done(null, currentUser);
       } else {
         console.log("user created");
         const newUser = await User.create({
@@ -39,10 +39,11 @@ passport.use(
           googleId: profile.id,
           isConfirmed: true,
         });
-        done(null, newUser);
+        //done(null, newUser);
       }
     })
   )
 );
 
 export default passport;
+ */

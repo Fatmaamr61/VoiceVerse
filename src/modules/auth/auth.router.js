@@ -21,7 +21,7 @@ import {
   sendForgetCode,
 } from "./auth.controller.js";
 import { isAuthenticated } from "../../middlewares/Authentication.middleware.js";
-import passport from "../../utils/passport-setup.js";
+//import passport from "../../utils/passport-setup.js";
 const router = Router();
 
 // register
@@ -37,11 +37,11 @@ router.get(
 // login
 router.post("/login", isValid(loginSchema), login);
 
-// google login
+/* // google login
 router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
 
 // google redirect callback url
-router.get("/redirect/google", passport.authenticate("google"), googleSuccess);
+router.get("/redirect/google", passport.authenticate("google"), googleSuccess); */
 
 // change password
 router.patch(

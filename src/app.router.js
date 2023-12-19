@@ -22,7 +22,7 @@ export const appRouter = (app, express) => {
   app.use(cors(corsOpts));
 
   app.use(express.json());
-
+/* 
   app.set("trust proxy", 1); // trust first proxy
 
   app.use(
@@ -43,7 +43,7 @@ export const appRouter = (app, express) => {
 
   // intialize passport
   app.use(passport.initialize());
-  app.use(passport.session());
+  app.use(passport.session()); */
 
   //routes
   //auth
