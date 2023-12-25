@@ -25,8 +25,8 @@ def translate_audio():
         return jsonify({'translated_text': translated_text})
     except Exception as e:
         print(e)
-        return jsonify({'error': "the video must be less than 1 min, please try again"}), 500
+        return jsonify({'error': "the video must be less than 1 min, please try again"}), 400
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=6000)

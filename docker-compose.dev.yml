@@ -12,4 +12,3 @@ services:
     command: npm run start-dev
   flask:
     command: python3.11 Flask/app.py
-
