@@ -1,5 +1,5 @@
 # Base Stage for Python
-FROM python:3.8 as python-base
+FROM python:3.11 as python-base
 WORKDIR /app
 
 RUN apt-get update && apt-get install -y portaudio19-dev

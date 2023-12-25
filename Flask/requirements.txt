@@ -5,3 +5,4 @@ moviepy
 pytube
 SpeechRecognition
 gunicorn
+langdetect

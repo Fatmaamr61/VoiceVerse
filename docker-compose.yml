@@ -20,9 +20,9 @@ services:
     build:
       context: .
       dockerfile: Python/Dockerfile
-#      target: python-production  # Choose the target stage (python-development/python-production)
+      target: python-production  # Choose the target stage (python-development/python-production)
 
-    command: python3.11 app/Flask/app.py
+    command: python3.11 Flask/app.py
     volumes:
       - ./Flask:/app/Flask
 
