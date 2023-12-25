@@ -1,6 +1,7 @@
 import authRouter from "./modules/auth/auth.router.js";
 import morgan from "morgan";
 import cors from "cors";
+import translatingRouter from "./modules/translating/translating.router.js"
 /* import session from "express-session";
 import cookieSession from "cookie-session";
 import passport from "passport"; */
@@ -49,6 +50,8 @@ export const appRouter = (app, express) => {
   //auth
   app.use("/auth", authRouter);
 
+  // translating
+  app.use("/video", translatingRouter )
   // not found page router
   app.all("*", (req, res, next) => {
     return next(new Error("page not found!", { cause: 404 }));

@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  node-app:
+    build: 
+      context: .
+      target: production
+    environment:
+      - NODE_ENV=production
+    command: npm start
+  flask:
+    build: 
+      context: .
+      target: production
+    command: gunicorn -w 4 -b 0.0.0.0:5000 wsgi:Flask/app

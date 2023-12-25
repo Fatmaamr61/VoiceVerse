@@ -1,0 +1,7 @@
+Flask
+googletrans
+moviepy
+PyAudio
+pytube
+SpeechRecognition
+gunicorn
