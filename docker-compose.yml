@@ -14,12 +14,18 @@ services:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - node-app
+
   flask:
-    # image: python3.11
     container_name: flask-container
-    # ports:
-    #   - "5000:5000"
+    build:
+      context: .
+      dockerfile: Python/Dockerfile
+      target: python-production  # Choose the target stage (python-development/python-production)
+
+    command: python3.11 app/Flask/app.py
     volumes:
-      - Flask:/app/Flask
-volumes:
-  Flask:
+      - ./Flask:/app/Flask
+
+
+#volumes:
+#  Flask:

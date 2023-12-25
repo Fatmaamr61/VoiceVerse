@@ -3,14 +3,10 @@ services:
   node-app:
     build: 
       context: .
+      dockerfile: nodejs/Dockerfile
       target: development
     volumes:
       - .:/app:ro
     environment:
       - NODE_ENV=development
     command: npm run start-dev
-  flask:
-    build: 
-      context: .
-      target: development
-    command: python3.11 Flask/app.py
