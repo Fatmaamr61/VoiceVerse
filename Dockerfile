@@ -11,7 +11,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Adjust the CMD or ENTRYPOINT based on your preference
-# ENTRYPOINT ["sh", "/entrypoint.sh"]
+ENTRYPOINT ["sh", "./entrypoint.sh"]
 CMD ["python3.11", "Flask/app.py"]
 
 FROM base as development 
