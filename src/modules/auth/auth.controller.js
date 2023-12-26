@@ -37,7 +37,7 @@ export const register = asyncHandler(async (req, res, next) => {
   });
 
   // create confirmation link
-  const link = `https://voice-verse-rho.vercel.app/auth/confirmEmail/${activationCode}`;
+  const link = `http://voice-verse-rho.vercel.app/auth/confirmEmail/${activationCode}`;
 
   // send email
   const isSent = await sendEmail({
