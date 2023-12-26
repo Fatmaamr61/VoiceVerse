@@ -2,8 +2,9 @@ version: '3.8'
 services:
   node-app:
     build: 
-      context: ..
+      context: .
       target: production
+      dockerfile: nodejs/Dockerfile
     environment:
       - NODE_ENV=production
     command: npm start
@@ -11,4 +12,5 @@ services:
     build: 
       context: .
       target: production
+      dockerfile: Python/Dockerfile
     command: gunicorn -w 4 -b 0.0.0.0:6000 wsgi:Flask/app
