@@ -16,10 +16,6 @@ services:
       - node-app
   flask:
     container_name: flask-container
-    build:
-      context: .
-      dockerfile: Python/Dockerfile
-      target: python-production  # Choose the target stage (python-development/python-production)
     ports:
       - "6000:6000"
 #    command: python3.11 Flask/app.py
