@@ -20,22 +20,22 @@ def translate_audio():
 
     # Translate the audio
     translator_instance = AudioProcessor()
-    # try:
-    #     translated_text = translator_instance.run(audio_file_path)
-    #     return jsonify({'translated_text': translated_text})
-    # except Exception as e:
-    #     print(e)
-    #     return jsonify({'error': "the video must be less than 1 min, please try again"}), 400
+    try:
+        translated_text = translator_instance.run(audio_file_path)
+        return jsonify({'translated_text': translated_text})
+    except Exception as e:
+        print(e)
+        return jsonify({'error': "something went wrong try again later!!"}), 400
 
     #check if the audio already exists
-    print(audio_file_path)
-    if not os.path.exists(audio_file_path):
-        raise Exception("File does not exist")
+    # print(audio_file_path)
+    # if not os.path.exists(audio_file_path):
+    #     raise Exception("File does not exist")
 
-    translated_text = translator_instance.run(audio_file_path)
-    if translated_text:
-        return jsonify({'translated_text': translated_text})
-    return jsonify({'error': "the video must be less than 1 min, please try again"}), 400
+    # translated_text = translator_instance.run(audio_file_path)
+    # if translated_text:
+    #     return jsonify({'translated_text': translated_text})
+    # return jsonify({'error': "the video must be less than 1 min, please try again"}), 400
 
 
 if __name__ == '__main__':

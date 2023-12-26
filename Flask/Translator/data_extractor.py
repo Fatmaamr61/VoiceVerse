@@ -15,6 +15,7 @@ class AudioProcessor:
     def run(self, audio_file_path):
         print("Running audio processor...")
         original_text, original_lang = self.extract_text_from_audio(audio_file_path)
+        print(original_text, original_lang)
         translated_text = self.translate_text(original_text, original_lang, "ar")
         return translated_text
 
@@ -37,7 +38,7 @@ class AudioProcessor:
                 try:
                     # Use Google Web Speech API to recognize the speech
                     # text = recognizer.recognize_google(audio, language="fr-FR")
-                    transcript = recognizer.recognize_google(audio, key='AIzaSyBZP4ck132MwJMtTSYnvyEQwBwv44R9ERs')
+                    transcript = recognizer.recognize_google(audio)
 
                     detected_language = detect(transcript)
 
@@ -62,4 +63,5 @@ class AudioProcessor:
             return translation.text
 
         except Exception as e:
+            print(e)
             raise e

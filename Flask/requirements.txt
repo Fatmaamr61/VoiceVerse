@@ -1,6 +1,6 @@
 PyAudio
 Flask
-googletrans
+googletrans==4.0.0-rc1
 moviepy
 pytube
 SpeechRecognition
