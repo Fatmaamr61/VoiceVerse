@@ -3,7 +3,8 @@ from moviepy.editor import VideoFileClip
 import ssl
 import os
 
-ssl._create_default_https_context = ssl._create_unverified_context
+# ssl._create_default_https_context = ssl._create_unverified_context
+os.environ["IMAGEIO_FFMPEG_EXE"] = "/usr/bin/ffmpeg"
 
 
 class Downloader:
@@ -20,14 +21,11 @@ class Downloader:
             raise Exception("Video URL not set")
         try:
             # Create a YouTube object
-           
+
             yt = YouTube(self.video_url)
-            print("#############")
             # Get the audio stream with the highest quality
             # audio_stream = yt.streams.filter(only_audio=True, file_extension='mp4').first()
-            print(yt)
             video_stream = yt.streams.filter(progressive=True, file_extension='mp4').first()
-            print("xxxxxxxxx")
             # Download the audio stream
             print(f'Downloading: {yt.title}')
             video_file_path = os.path.join(os.getcwd(), video_stream.default_filename)
@@ -37,8 +35,6 @@ class Downloader:
             else:
                 print('File already exists!')
 
-            # video_file_path = os.path.join(os.getcwd(), video_stream.default_filename)
-
             print(video_file_path)
 
             audio_file = self.convert_to_wav(video_file_path)
@@ -47,26 +43,31 @@ class Downloader:
 
         except Exception as e:
             print(e)
-           # raise f'An error occurred: {e}'
+        # raise f'An error occurred: {e}'
 
     def convert_to_wav(self, input_video):
         # check if exists
         if not os.path.exists(input_video):
             raise Exception("File does not exist")
 
+        print("Converting to wav")
         filename = input_video.split(".")[0]
         input_video = input_video
         output_audio = f"{filename}.wav"
 
+        print(f"Input video: {input_video}")
         # Load the video clip
         video_clip = VideoFileClip(input_video)
 
+        print(f"Output audio: {output_audio}")
         # Extract audio from the video clip
         audio_clip = video_clip.audio
 
-        # Write the audio clip to a WAV file
+        print("Before writing audio to file....")
         audio_clip.write_audiofile(output_audio)
+        print("After writing audio to file....")
 
+        print("Closing audio file....")
         # Close the video and audio clips
         video_clip.close()
         audio_clip.close()
