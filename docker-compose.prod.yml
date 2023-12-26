@@ -11,6 +11,6 @@ services:
   flask:
     build: 
       context: .
-      target: production
+      target: python-production
       dockerfile: Python/Dockerfile
     command: gunicorn -w 4 -b 0.0.0.0:6000 wsgi:Flask/app
