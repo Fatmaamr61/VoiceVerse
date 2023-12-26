@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 from Translator.data_extractor import AudioProcessor
 from Translator.downloader import Downloader
-
+import os
 app = Flask(__name__)
 
 
@@ -26,6 +26,11 @@ def translate_audio():
     # except Exception as e:
     #     print(e)
     #     return jsonify({'error': "the video must be less than 1 min, please try again"}), 400
+
+    #check if the audio already exists
+    print(audio_file_path)
+    if not os.path.exists(audio_file_path):
+        raise Exception("File does not exist")
 
     translated_text = translator_instance.run(audio_file_path)
     if translated_text:

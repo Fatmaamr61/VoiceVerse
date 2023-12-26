@@ -23,6 +23,7 @@ class AudioProcessor:
         recognizer = self.recognizer
 
         print("Loading audio file...")
+        print(f"audio_file_path: {audio_file_path}")
         with sr.AudioFile(audio_file_path) as source:
             # Record the audio
             print("Recording audio...")
@@ -32,10 +33,11 @@ class AudioProcessor:
             print("Recognizing the text...")
             max_retries = 3
             for _ in range(max_retries):
+                print("Attempt num: ", _)
                 try:
                     # Use Google Web Speech API to recognize the speech
                     # text = recognizer.recognize_google(audio, language="fr-FR")
-                    transcript = recognizer.recognize_google(audio)
+                    transcript = recognizer.recognize_google(audio, key='AIzaSyBZP4ck132MwJMtTSYnvyEQwBwv44R9ERs')
 
                     detected_language = detect(transcript)
 
