@@ -1,7 +1,8 @@
 import authRouter from "./modules/auth/auth.router.js";
+import movieRouter from "./modules/movies/movies.router.js";
 import morgan from "morgan";
 import cors from "cors";
-import translatingRouter from "./modules/translating/translating.router.js"
+import translatingRouter from "./modules/translating/translating.router.js";
 /* import session from "express-session";
 import cookieSession from "cookie-session";
 import passport from "passport"; */
@@ -23,7 +24,7 @@ export const appRouter = (app, express) => {
   app.use(cors(corsOpts));
 
   app.use(express.json());
-/* 
+  /* 
   app.set("trust proxy", 1); // trust first proxy
 
   app.use(
@@ -50,8 +51,11 @@ export const appRouter = (app, express) => {
   //auth
   app.use("/auth", authRouter);
 
+  // movies
+  app.use("/movies", movieRouter);
+  
   // translating
-  app.use("/video", translatingRouter )
+  app.use("/video", translatingRouter);
   // not found page router
   app.all("*", (req, res, next) => {
     return next(new Error("page not found!", { cause: 404 }));
