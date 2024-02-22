@@ -1,6 +1,6 @@
 import { Movies } from "../../../db/models/movies.model.js";
 import { asyncHandler } from "../../utils/asyncHandler.js";
-
+import { nanoid } from "nanoid";
 // add movie
 export const newMovie = asyncHandler(async (req, res, next) => {
   // unique cloud folder name
@@ -28,5 +28,9 @@ export const newMovie = asyncHandler(async (req, res, next) => {
     trailer,
     tags,
   });
-  return res.json({success: true, message: "movie added successfully", results: movie})
+  return res.json({
+    success: true,
+    message: "movie added successfully",
+    results: movie,
+  });
 });
