@@ -3,16 +3,6 @@ import { Schema, model } from "mongoose";
 //schema
 const userSchema = new Schema(
   {
-    firstName: {
-      type: String,
-      min: 3,
-      max: 20,
-    },
-    lastName: {
-      type: String,
-      min: 3,
-      max: 20,
-    },
     userName: String,
     email: {
       type: String,

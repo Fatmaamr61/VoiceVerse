@@ -3,8 +3,6 @@ import joi from "joi";
 // register
 export const registerSchema = joi
   .object({
-    firstName: joi.string().min(3).max(20).required(),
-    lastName: joi.string().min(3).max(20).required(),
     userName: joi.string().min(3).max(20),
     email: joi
       .string()
