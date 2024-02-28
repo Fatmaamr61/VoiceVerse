@@ -1,5 +1,4 @@
 import authRouter from "./modules/auth/auth.router.js";
-import movieRouter from "./modules/movies/movies.router.js";
 import morgan from "morgan";
 import cors from "cors";
 import translatingRouter from "./modules/translating/translating.router.js";
@@ -50,9 +49,6 @@ export const appRouter = (app, express) => {
   //routes
   //auth
   app.use("/auth", authRouter);
-
-  // movies
-  app.use("/movies", movieRouter);
   
   // translating
   app.use("/video", translatingRouter);

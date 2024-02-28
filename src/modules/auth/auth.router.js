@@ -17,6 +17,7 @@ import {
   logOut,
   login,
   profile,
+  profilePic,
   register,
   resetPassword,
   sendForgetCode,
@@ -46,6 +47,9 @@ router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
 
 // google redirect callback url
 router.get("/redirect/google", passport.authenticate("google"), googleSuccess); */
+
+// add profile picture
+router.post("/profile/picture", isAuthenticated, profilePic);
 
 // change password
 router.patch(

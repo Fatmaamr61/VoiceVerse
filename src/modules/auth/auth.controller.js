@@ -10,6 +10,8 @@ import {
 import jwt from "jsonwebtoken";
 import { Token } from "../../../db/models/token.model.js";
 import randomstring from "randomstring";
+import cloudinary from "../../utils/cloud.js";
+import { nanoid } from "nanoid";
 
 export const register = asyncHandler(async (req, res, next) => {
   // data from request
@@ -117,6 +119,22 @@ export const googleSuccess = asyncHandler(async (req, res, next) => {
   return res.json({ success: true, result: "home page" });
 });
 
+export const profilePic = asyncHandler(async (req, res, next) => {
+  // get user
+  const id = req.user._id;
+
+  const cloudFolder = nanoid();
+
+  // upload profile image
+  const { secure_url, public_id } = await cloudinary.uploader.upload(
+    req.files.defaultImage[0].path,
+    { folder: `${process.env.FOLDER_CLOUD_NAME}/ProfilePics/${cloudFolder}` }
+  );
+  // add pp 
+  const pic = await User.findById({ id }, {profileImage: secure_url, public_id});
+
+  return res.json({success: true, message: "profile picture uploaded successfully", result: pic})
+});
 export const changePassword = asyncHandler(async (req, res, next) => {
   // data from request
   let { oldPassword, newPassword } = req.body;
