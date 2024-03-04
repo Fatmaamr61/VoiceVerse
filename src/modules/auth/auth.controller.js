@@ -12,6 +12,7 @@ import { Token } from "../../../db/models/token.model.js";
 import randomstring from "randomstring";
 import cloudinary from "../../utils/cloud.js";
 import { nanoid } from "nanoid";
+import { error } from "console";
 
 export const register = asyncHandler(async (req, res, next) => {
   // data from request
@@ -127,14 +128,24 @@ export const profilePic = asyncHandler(async (req, res, next) => {
 
   // upload profile image
   const { secure_url, public_id } = await cloudinary.uploader.upload(
-    req.files.defaultImage[0].path,
-    { folder: `${process.env.FOLDER_CLOUD_NAME}/ProfilePics/${cloudFolder}` }
+    req.file.path,
+    {
+      folder: `${process.env.FOLDER_CLOUD_NAME}/ProfilePics/${id}/${cloudFolder}`,
+    }
   );
-  // add pp 
-  const pic = await User.findById({ id }, {profileImage: secure_url, public_id});
 
-  return res.json({success: true, message: "profile picture uploaded successfully", result: pic})
+  // add pp
+  const pic = await User.findByIdAndUpdate(id, {
+    profileImage: { url: secure_url, id: public_id },
+  });
+
+  return res.json({
+    success: true,
+    message: "profile picture uploaded successfully",
+    result: pic,
+  });
 });
+
 export const changePassword = asyncHandler(async (req, res, next) => {
   // data from request
   let { oldPassword, newPassword } = req.body;

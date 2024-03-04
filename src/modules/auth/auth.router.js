@@ -23,6 +23,7 @@ import {
   sendForgetCode,
 } from "./auth.controller.js";
 import { isAuthenticated } from "../../middlewares/Authentication.middleware.js";
+import { fileUpload } from "../../utils/multer.js";
 //import passport from "../../utils/passport-setup.js";
 const router = Router();
 
@@ -49,7 +50,12 @@ router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
 router.get("/redirect/google", passport.authenticate("google"), googleSuccess); */
 
 // add profile picture
-router.post("/profile/picture", isAuthenticated, profilePic);
+router.post(
+  "/profile/picture",
+  isAuthenticated,
+  fileUpload.single('image'),
+  profilePic
+);
 
 // change password
 router.patch(
