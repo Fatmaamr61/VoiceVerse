@@ -39,7 +39,7 @@ export const register = asyncHandler(async (req, res, next) => {
   });
 
   // create confirmation link
-  const link = `http://localhost:3006/auth/confirmEmail/${activationCode}`;
+  const link = `https://voice-verse-livid.vercel.app/auth/confirmEmail/${activationCode}`;
 
   // send email
   const isSent = await sendEmail({
