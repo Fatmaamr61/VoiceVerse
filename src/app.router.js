@@ -2,6 +2,7 @@ import authRouter from "./modules/auth/auth.router.js";
 import morgan from "morgan";
 import cors from "cors";
 import translatingRouter from "./modules/translating/translating.router.js";
+import videoRouter from "./modules/videos/video.router.js"
 /* import session from "express-session";
 import cookieSession from "cookie-session";
 import passport from "passport"; */
@@ -50,6 +51,8 @@ export const appRouter = (app, express) => {
   //auth
   app.use("/auth", authRouter);
   
+  // video
+  app.use("/video", videoRouter)
   // translating
   app.use("/video", translatingRouter);
   // not found page router

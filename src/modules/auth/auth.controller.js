@@ -13,6 +13,7 @@ import randomstring from "randomstring";
 import cloudinary from "../../utils/cloud.js";
 import { nanoid } from "nanoid";
 import { error } from "console";
+import { Favorites } from "../../../db/models/favorites.model.js";
 
 export const register = asyncHandler(async (req, res, next) => {
   // data from request
@@ -38,7 +39,7 @@ export const register = asyncHandler(async (req, res, next) => {
   });
 
   // create confirmation link
-  const link = `https://voice-verse-livid.vercel.app/auth/confirmEmail/${activationCode}`;
+  const link = `http://localhost:3006/auth/confirmEmail/${activationCode}`;
 
   // send email
   const isSent = await sendEmail({
@@ -65,6 +66,9 @@ export const activateAccount = asyncHandler(async (req, res, next) => {
 
   // check if user doesn't exist
   if (!user) return next(new Error("user not found!!", { cause: 404 }));
+
+  // create user's favorites
+  await Favorites.create({ user: user._id });
 
   // send response
   return res.send(
