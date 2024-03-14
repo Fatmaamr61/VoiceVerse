@@ -69,3 +69,17 @@ export const getFavorites = asyncHandler(async (req, res, next) => {
 
   return res.json({ success: true, results: favorites });
 });
+
+export const removeFromFavorite = asyncHandler(async (req, res, next) => {
+  const user = req.user._id;
+  const { url } = req.body;
+
+  // check authority
+  const checkUser = await Favorites.findOne({ user });
+  if (!user) return next(new Error("not authorized user", { cause: 401 }));
+
+  // remove vid url from fav
+  const removeFav = await Favorites.findOneAndDelete({ "videos.url": url });
+
+  return res.json({ success: true, results: removeFav });
+});

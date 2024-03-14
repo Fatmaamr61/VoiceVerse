@@ -124,6 +124,19 @@ export const googleSuccess = asyncHandler(async (req, res, next) => {
   return res.json({ success: true, result: "home page" });
 });
 
+export const editUserName = asyncHandler(async (req, res, next) => {
+  const id = req.user._id;
+  const { userName } = req.body;
+
+  const newName = await User.findByIdAndUpdate(id, { userName: userName });
+
+  return res.json({
+    success: true,
+    message: "userName updated successfully..",
+    results: newName,
+  });
+});
+
 export const profilePic = asyncHandler(async (req, res, next) => {
   // get user
   const id = req.user._id;
@@ -204,22 +217,25 @@ export const sendForgetCode = asyncHandler(async (req, res, next) => {
 });
 
 export const setForgetCode = asyncHandler(async (req, res, next) => {
+  const { forgetCode } = req.body;
   // check forget code
-  let user = await User.findOne({ forgetCode: req.body.forgetCode });
+  let user = await User.findOne({ forgetCode });
   if (!user) return next(new Error("Invalid code!", { cause: 400 }));
 
-  return res.status(200).json({ success: true, result: "valid code" });
+  return res
+    .status(200)
+    .json({ success: true, message: "valid code", results: forgetCode });
 });
 
 export const resetPassword = asyncHandler(async (req, res, next) => {
   // check user
-  let user = await User.findOne({ forgetCode: req.body.forgetCode });
-  if (!user) return next(new Error("Invalid code!", { cause: 400 }));
+  let { forgetCode } = req.body;
 
-  user = await User.findOneAndUpdate(
-    { forgetCode: req.body.forgetCode },
+  const user = await User.findOneAndUpdate(
+    { forgetCode },
     { $unset: { forgetCode: 1 } }
   );
+  if (!user) return next(new Error("user not found!!"), { cause: 404 });
 
   user.password = bcrypt.hashSync(
     req.body.password,

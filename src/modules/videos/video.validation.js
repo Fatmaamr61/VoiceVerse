@@ -16,3 +16,8 @@ export const getVideoSchema = joi.object({
 export const addToFavSchema = joi.object({
   url: joi.string().required(),
 });
+
+// remove from favorite
+export const removeFromFavSchema = joi.object({
+  url: joi.string().required(),
+});

@@ -6,11 +6,13 @@ import {
   addVideo,
   getFavorites,
   getVideo,
+  removeFromFavorite,
 } from "./video.controller.js";
 import {
   addToFavSchema,
   addVideoSchema,
   getVideoSchema,
+  removeFromFavSchema,
 } from "./video.validation.js";
 const router = Router();
 
@@ -32,6 +34,11 @@ router.post(
 router.get("/favorites", isAuthenticated, getFavorites);
 
 // remove from favorite
-router.delete("/favorites/delete");
+router.delete(
+  "/favorites/delete",
+  isAuthenticated,
+  isValid(removeFromFavSchema),
+  removeFromFavorite
+);
 
 export default router;

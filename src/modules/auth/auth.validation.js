@@ -48,6 +48,11 @@ export const changePasswordSchema = joi
   })
   .required();
 
+// change user name
+export const changeUserNameSchema = joi.object({
+  userName: joi.string().required(),
+});
+
 // send forget code
 export const sendForgetCodeSchema = joi
   .object({
