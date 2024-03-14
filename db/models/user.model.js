@@ -23,7 +23,7 @@ const userSchema = new Schema(
       url: {
         type: String,
         default:
-          "https://res.cloudinary.com/dc4zgmrmf/image/upload/v1697893176/VoiceVerse%20defaults/user/userDefaultProfile.jpg",
+          "https://res.cloudinary.com/dc4zgmrmf/image/upload/v1710460050/VoiceVerse%20defaults/user/WhatsApp_Image_2024-03-11_at_19.05.02_iowoqo.jpg",
       },
       id: {
         type: String,
