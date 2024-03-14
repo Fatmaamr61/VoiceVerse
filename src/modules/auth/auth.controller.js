@@ -12,8 +12,8 @@ import { Token } from "../../../db/models/token.model.js";
 import randomstring from "randomstring";
 import cloudinary from "../../utils/cloud.js";
 import { nanoid } from "nanoid";
-import { error } from "console";
 import { Favorites } from "../../../db/models/favorites.model.js";
+import Stripe from "stripe";
 
 export const register = asyncHandler(async (req, res, next) => {
   // data from request
@@ -255,6 +255,37 @@ export const resetPassword = asyncHandler(async (req, res, next) => {
   return res.json({
     success: true,
     message: "password reset successfully, try to login!",
+  });
+});
+
+export const payment = asyncHandler(async (req, res, next) => {
+  // stripe payment
+  const stripe = new Stripe(process.env.STRIPE_KEY);
+
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    mode: "payment",
+    metadata: { order_id: order._id.toString() },
+    success_url: process.env.SUCCESS_URL,
+    cancel_url: process.env.CANCEL_URL,
+    line_items: order.products.map((product) => {
+      return {
+        price_data: {
+          currency: "EGP",
+          product_data: {
+            name: product.name,
+          },
+          unit_amount: product.itemPrice * 100,
+        },
+        quantity: product.quantity,
+      };
+    }),
+    discounts: existCoupon ? [{ coupon: existCoupon.id }] : [],
+  });
+
+  return res.json({
+    success: true,
+    results: session.url,
   });
 });
 

@@ -30,6 +30,11 @@ const userSchema = new Schema(
         default: "VoiceVerse%20defaults/user/userDefaultProfile",
       },
     },
+    accountStatus: {
+      type: String,
+      enum: ["Free", "Starter", "Business"],
+      default: "Free",
+    },
   },
   { timestamps: true }
 );
