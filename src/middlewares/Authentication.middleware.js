@@ -23,7 +23,6 @@ export const isAuthenticated = asyncHandler(async (req, res, next) => {
 
   // check token exsistance
   const checkToken = await Token.findOne({ token, isValid: true });
-  console.log(checkToken);
   if (!checkToken) return next(new Error("Token expired", { cause: 403 }));
 
   // decode
