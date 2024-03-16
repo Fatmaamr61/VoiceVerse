@@ -18,7 +18,7 @@ export const appRouter = (app, express) => {
 
     methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
 
-    allowedHeaders: ["Content-Type", "token"],
+    allowedHeaders: ["Content-Type", "token", "Authorization"],
   };
 
   app.use(cors(corsOpts));
