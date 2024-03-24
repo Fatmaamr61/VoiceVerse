@@ -23,11 +23,21 @@ export const getVideo = asyncHandler(async (req, res, next) => {
   const { url } = req.body;
 
   // check vid existance
-  const vid = await Video.find({ url });
+  const vid = await Video.find({ url }).populate(
+    "user",
+    "userName profileImage"
+  );
   if (vid.length < 1)
     return next(new Error("video not found!", { cause: 404 }));
 
   return res.json({ success: true, results: vid });
+});
+
+export const getAllVideos = asyncHandler(async (req, res, next) => {
+  const videos = await Video.find().populate("user", "userName profileImage");
+  if (!videos) return next(new Error("no video found!", { cause: 404 }));
+
+  return res.json({ success: true, results: videos });
 });
 
 export const addFavorite = asyncHandler(async (req, res, next) => {

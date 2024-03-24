@@ -318,3 +318,68 @@ export const deleteAccount = asyncHandler(async (req, res, next) => {
     .status(202)
     .json({ success: true, message: `user deleted successfully..` });
 });
+
+export const subscriptionWebhook = asyncHandler(async (request, response) => {
+  // server.js
+  //
+  // Use this sample code to handle webhook events in your integration.
+  //
+  // 1) Paste this code into a new file (server.js)
+  //
+  // 2) Install dependencies
+  //   npm install stripe
+  //   npm install express
+  //
+  // 3) Run the server on http://localhost:4242
+  //   node server.js
+
+  // The library needs to be configured with your account's secret key.
+  // Ensure the key is kept out of any version control system you might be using.
+  const stripe = new Stripe(process.env.STRIPE_KEY);
+  const sig = request.headers["stripe-signature"];
+
+  // This is your Stripe CLI webhook secret for testing your endpoint locally.
+  const endpointSecret =
+    "whsec_0f274daf321fb3913df1c878784d36fde72be3840646af3d2b032867df62a05c";
+
+  app.post(
+    "/webhook",
+    express.raw({ type: "application/json" }),
+    (request, response) => {
+      const sig = request.headers["stripe-signature"];
+
+      let event;
+
+      try {
+        event = stripe.webhooks.constructEvent(
+          request.body,
+          sig,
+          endpointSecret
+        );
+      } catch (err) {
+        response.status(400).send(`Webhook Error: ${err.message}`);
+        return;
+      }
+
+      // Handle the event
+      switch (event.type) {
+        case "customer.subscription.created":
+          const customerSubscriptionCreated = event.data.object;
+          // Then define and call a function to handle the event customer.subscription.created
+          break;
+        case "customer.subscription.deleted":
+          const customerSubscriptionDeleted = event.data.object;
+          // Then define and call a function to handle the event customer.subscription.deleted
+          break;
+        // ... handle other event types
+        default:
+          console.log(`Unhandled event type ${event.type}`);
+      }
+
+      // Return a 200 response to acknowledge receipt of the event
+      response.send();
+    }
+  );
+
+  app.listen(4242, () => console.log("Running on port 4242"));
+});

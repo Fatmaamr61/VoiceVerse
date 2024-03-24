@@ -4,6 +4,7 @@ import { isValid } from "../../middlewares/validation.middleware.js";
 import {
   addFavorite,
   addVideo,
+  getAllVideos,
   getFavorites,
   getVideo,
   removeFromFavorite,
@@ -18,6 +19,9 @@ const router = Router();
 
 // add video
 router.post("/new", isAuthenticated, isValid(addVideoSchema), addVideo);
+
+// get all videos
+router.get("/all", isAuthenticated, getAllVideos);
 
 // get video
 router.get("/", isAuthenticated, isValid(getVideoSchema), getVideo);
