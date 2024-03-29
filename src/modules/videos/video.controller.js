@@ -59,7 +59,7 @@ export const addFavorite = asyncHandler(async (req, res, next) => {
   // add to fav
   const fav = await Favorites.findOneAndUpdate(
     { user: req.user._id },
-    { $push: { videos: video._id } },
+    { $push: { videos: { id: video._id, url: url } } },
     { new: true }
   ).populate("videos");
 
@@ -81,15 +81,26 @@ export const getFavorites = asyncHandler(async (req, res, next) => {
 });
 
 export const removeFromFavorite = asyncHandler(async (req, res, next) => {
-  const user = req.user._id;
+  const userID = req.user._id;
   const { url } = req.body;
 
-  // check authority
-  const checkUser = await Favorites.findOne({ user });
-  if (!user) return next(new Error("not authorized user", { cause: 401 }));
+  console.log("Received URL:", url);
 
-  // remove vid url from fav
-  const removeFav = await Favorites.findOneAndDelete({ "videos.url": url });
+  // Check authority
+  const checkUser = await Favorites.findOne({ user: userID });
+  if (!checkUser) {
+    console.log("User not authorized");
+    return next(new Error("Not authorized user", { cause: 401 }));
+  }
 
-  return res.json({ success: true, results: removeFav });
+  const userFav = await Favorites.findOne({user: userID})
+  
+  // Remove vid url from fav
+  const updatedFavorites = userFav.videos.filter((video) => video.url !== url);
+  userFav.videos = updatedFavorites;
+  await userFav.save();
+
+  console.log("Updated Document:", updatedFavorites);
+
+  return res.json({ success: true, results: updatedFavorites });
 });

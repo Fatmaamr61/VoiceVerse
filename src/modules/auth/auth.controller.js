@@ -14,6 +14,7 @@ import cloudinary from "../../utils/cloud.js";
 import { nanoid } from "nanoid";
 import { Favorites } from "../../../db/models/favorites.model.js";
 import Stripe from "stripe";
+import { Video } from "../../../db/models/videos.model.js";
 
 export const register = asyncHandler(async (req, res, next) => {
   // data from request
@@ -314,6 +315,8 @@ export const deleteAccount = asyncHandler(async (req, res, next) => {
   token = token.split(process.env.BEARER)[1];
   const removeToken = await Token.findOneAndDelete({ token });
 
+  // remove videos
+  const remVid = await Video.findOneAndDelete({ user: id });
   return res
     .status(202)
     .json({ success: true, message: `user deleted successfully..` });

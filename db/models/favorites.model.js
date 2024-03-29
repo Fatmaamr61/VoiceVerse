@@ -5,7 +5,7 @@ const favoriteSchema = new Schema({
     type: Types.ObjectId,
     ref: "user",
   },
-  videos: [{ type: Types.ObjectId, ref: "video" }],
+  videos: [{ id: { type: Types.ObjectId, ref: "video" }, url: String }],
 });
 
 export const Favorites = model("favorite", favoriteSchema);
