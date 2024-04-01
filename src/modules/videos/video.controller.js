@@ -73,9 +73,15 @@ export const addFavorite = asyncHandler(async (req, res, next) => {
 export const getFavorites = asyncHandler(async (req, res, next) => {
   const user = req.user._id;
 
-  const favorites = await Favorites.findOne({ user }).populate("videos");
+  const favorites = await Favorites.findOne({ user }).populate({
+    path: "videos",
+    populate: {
+      path: "id",
+      model: "video",
+    },
+  });
   if (favorites.videos.length < 1)
-    return res.json({ message: "empty list add you favorite videos :)" });
+    return res.json({ message: "empty list, add your favorite videos :)" });
 
   return res.json({ success: true, results: favorites });
 });
@@ -93,8 +99,8 @@ export const removeFromFavorite = asyncHandler(async (req, res, next) => {
     return next(new Error("Not authorized user", { cause: 401 }));
   }
 
-  const userFav = await Favorites.findOne({user: userID})
-  
+  const userFav = await Favorites.findOne({ user: userID });
+
   // Remove vid url from fav
   const updatedFavorites = userFav.videos.filter((video) => video.url !== url);
   userFav.videos = updatedFavorites;
