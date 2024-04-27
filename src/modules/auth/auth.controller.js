@@ -157,10 +157,21 @@ export const profilePic = asyncHandler(async (req, res, next) => {
     profileImage: { url: secure_url, id: public_id },
   });
 
+  /*   console.log(req.file);
+  
+  const params = {
+    Bucket: process.env.BUCKET_NAME,
+    Key: id,
+    Body: req.file,
+    ContentType: req.file.mimetype,
+  };
+  const command = new PutObjectCommand(params);
+
+  await s3.send(command); */
+
   return res.json({
     success: true,
     message: "profile picture uploaded successfully",
-    result: pic,
   });
 });
 

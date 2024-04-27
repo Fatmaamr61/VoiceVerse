@@ -26,7 +26,7 @@ import {
   setForgetCode,
 } from "./auth.controller.js";
 import { isAuthenticated } from "../../middlewares/Authentication.middleware.js";
-import { fileUpload } from "../../utils/multer.js";
+import { upload } from "../../utils/multer.js";
 //import passport from "../../utils/passport-setup.js";
 const router = Router();
 
@@ -64,7 +64,7 @@ router.patch(
 router.post(
   "/profile/picture",
   isAuthenticated,
-  fileUpload.single("image"),
+  upload.single("image"),
   profilePic
 );
 
