@@ -248,19 +248,28 @@ export const accountActivatedTemplate = () => `<!DOCTYPE html>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
+            background-color: #131212; /* Darker grey background */
+            color: #fff; /* White text */
         }
         .container {
             margin-top: 100px;
         }
+        .logo {
+            margin-bottom: 20px; /* Add some space below the logo */
+        }
         h1 {
-            color: #4CAF50;
+            color: #54599b;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Congratulations!</h1>
+        <div class="logo">
+            <img src="https://cdn.discordapp.com/attachments/880207110607081505/1235602272499531816/WhatsApp_Image_2024-05-02_at_17.18.32.png?ex=6634f7ca&is=6633a64a&hm=2bd99d7d5e675f67ccbf16c18ede7b388587cea41080561f20ba7a58472c39ef&" alt="Your Logo" width="500"> <!-- Adjust width as needed -->
+        </div>
+        <h1 width="200">Congratulations!</h1>
         <p>Your account has been activated. You can log in now.</p>
     </div>
 </body>
-</html>`;
+</html>
+`;
