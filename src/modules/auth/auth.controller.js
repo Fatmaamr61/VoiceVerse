@@ -73,7 +73,7 @@ export const activateAccount = asyncHandler(async (req, res, next) => {
   await Favorites.create({ user: user._id });
 
   // send response
-  return res.send(accountActivatedTemplate);
+  return res.send(accountActivatedTemplate());
 });
 
 export const login = asyncHandler(async (req, res, next) => {
