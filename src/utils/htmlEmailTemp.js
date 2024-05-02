@@ -237,3 +237,30 @@ export const passwordResetTemplate = (code) => `<!DOCTYPE html>
 </table>
 </body>
 </html>`;
+
+export const accountActivatedTemplate = () => `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Activated</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin-top: 100px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Congratulations!</h1>
+        <p>Your account has been activated. You can log in now.</p>
+    </div>
+</body>
+</html>`;

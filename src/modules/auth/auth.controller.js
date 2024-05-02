@@ -6,6 +6,7 @@ import { sendEmail } from "../../utils/sendEmail.js";
 import {
   passwordResetTemplate,
   signUpTemp,
+  accountActivatedTemplate,
 } from "../../utils/htmlEmailTemp.js";
 import jwt from "jsonwebtoken";
 import { Token } from "../../../db/models/token.model.js";
@@ -72,9 +73,7 @@ export const activateAccount = asyncHandler(async (req, res, next) => {
   await Favorites.create({ user: user._id });
 
   // send response
-  return res.send(
-    "congratulations your account is now activated!, you can login now"
-  );
+  return res.send(accountActivatedTemplate);
 });
 
 export const login = asyncHandler(async (req, res, next) => {
@@ -305,6 +304,7 @@ export const logOut = asyncHandler(async (req, res, next) => {
   const id = req.user._id;
   let { token } = req.headers;
 
+  // invalidate token
   token = token.split(process.env.BEARER)[1];
   const removeToken = await Token.findOneAndUpdate(
     { token },
