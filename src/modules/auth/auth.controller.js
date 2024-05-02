@@ -92,6 +92,13 @@ export const login = asyncHandler(async (req, res, next) => {
   const pass = bcrypt.compareSync(password, user.password);
   if (!pass) return next(new Error("Wrong password", { cause: 400 }));
 
+  // check if user have active token and invalidate it
+  const tokens = await Token.find({ user: user._id });
+  tokens.forEach(async (token) => {
+    token.isValid = false;
+    await token.save();
+  });
+  
   // generate token
   const token = jwt.sign(
     { id: user._id, email: user.email },
@@ -319,6 +326,12 @@ export const deleteAccount = asyncHandler(async (req, res, next) => {
   const id = req.user._id;
   let { token } = req.headers;
 
+  // remove favorite schema
+  const removeFav = await Favorites.findOneAndDelete({ user: id });
+
+  // remove videos
+  const remVid = await Video.deleteMany({ user: id });
+
   // delete user
   const user = await User.findByIdAndDelete(id);
 
@@ -326,8 +339,6 @@ export const deleteAccount = asyncHandler(async (req, res, next) => {
   token = token.split(process.env.BEARER)[1];
   const removeToken = await Token.findOneAndDelete({ token });
 
-  // remove videos
-  const remVid = await Video.findOneAndDelete({ user: id });
   return res
     .status(202)
     .json({ success: true, message: `user deleted successfully..` });
