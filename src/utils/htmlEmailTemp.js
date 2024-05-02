@@ -250,26 +250,46 @@ export const accountActivatedTemplate = () => `<!DOCTYPE html>
             text-align: center;
             background-color: #131212; /* Darker grey background */
             color: #fff; /* White text */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
         }
         .container {
-            margin-top: 100px;
+            margin-top: 50px;
+            padding: 0 20px; /* Add padding to improve readability on smaller screens */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
         }
         .logo {
             margin-bottom: 20px; /* Add some space below the logo */
         }
         h1 {
             color: #54599b;
+            font-size: 28px; /* Adjust font size for smaller screens */
+        }
+        p {
+            font-size: 18px; /* Adjust font size for smaller screens */
+        }
+        @media screen and (max-width: 600px) {
+            .container {
+                margin-top: 30px;
+            }
+            h1 {
+                font-size: 24px; /* Adjust font size for even smaller screens */
+            }
+            p {
+                font-size: 16px; /* Adjust font size for even smaller screens */
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="logo">
-            <img src="https://cdn.discordapp.com/attachments/880207110607081505/1235602272499531816/WhatsApp_Image_2024-05-02_at_17.18.32.png?ex=6634f7ca&is=6633a64a&hm=2bd99d7d5e675f67ccbf16c18ede7b388587cea41080561f20ba7a58472c39ef&" alt="Your Logo" width="500"> <!-- Adjust width as needed -->
+            <img src="https://cdn.discordapp.com/attachments/880207110607081505/1235602272499531816/WhatsApp_Image_2024-05-02_at_17.18.32.png?ex=6634f7ca&is=6633a64a&hm=2bd99d7d5e675f67ccbf16c18ede7b388587cea41080561f20ba7a58472c39ef&" alt="Your Logo" width="100%"> <!-- Set width to 100% to make it responsive -->
         </div>
-        <h1 width="200">Congratulations!</h1>
+        <h1>Congratulations!</h1>
         <p>Your account has been activated. You can log in now.</p>
     </div>
 </body>
 </html>
+
 `;
