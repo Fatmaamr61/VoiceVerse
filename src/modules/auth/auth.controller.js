@@ -98,7 +98,7 @@ export const login = asyncHandler(async (req, res, next) => {
     token.isValid = false;
     await token.save();
   });
-  
+
   // generate token
   const token = jwt.sign(
     { id: user._id, email: user.email },
@@ -311,13 +311,9 @@ export const logOut = asyncHandler(async (req, res, next) => {
   const id = req.user._id;
   let { token } = req.headers;
 
-  // invalidate token
+  // delete token
   token = token.split(process.env.BEARER)[1];
-  const removeToken = await Token.findOneAndUpdate(
-    { token },
-    { isValid: false },
-    { new: true }
-  );
+  const removeToken = await Token.findOneAndDelete({ token });
 
   return res.status(202).json({ success: true, message: `You are logged Out` });
 });
