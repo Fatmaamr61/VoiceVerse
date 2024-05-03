@@ -1,6 +1,7 @@
 import { asyncHandler } from "../../utils/asyncHandler.js";
 import { Video } from "../../../db/models/videos.model.js";
 import { Favorites } from "../../../db/models/favorites.model.js";
+import cloudinary from "../../utils/cloud.js";
 
 export const addVideo = asyncHandler(async (req, res, next) => {
   const id = req.user._id;
@@ -15,6 +16,33 @@ export const addVideo = asyncHandler(async (req, res, next) => {
   return res.json({
     success: true,
     message: "video uploaded successfully",
+    results: vid,
+  });
+});
+
+export const uploadVideo = asyncHandler(async (req, res, next) => {
+  // get user
+  const id = req.user._id;
+  const { title, description } = req.body;
+
+  // upload video
+  const { secure_url, public_id } = await cloudinary.uploader.upload(
+    req.file.path,
+    {
+      resource_type: "video",
+      folder: `${process.env.FOLDER_CLOUD_NAME}/videos/${id}`,
+    }
+  );
+
+  const vid = await Video.create({
+    video: { url: secure_url, id: public_id },
+    title: title,
+    description: description,
+    user: id,
+  });
+  return res.json({
+    success: true,
+    message: "video uploaded successfully..",
     results: vid,
   });
 });

@@ -2,7 +2,6 @@ import joi from "joi";
 
 // add video
 export const addVideoSchema = joi.object({
-  url: joi.string().required(),
   title: joi.string().min(2).max(50).required(),
   description: joi.string(),
 });

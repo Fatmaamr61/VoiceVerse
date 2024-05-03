@@ -8,6 +8,7 @@ import {
   getFavorites,
   getVideo,
   removeFromFavorite,
+  uploadVideo,
 } from "./video.controller.js";
 import {
   addToFavSchema,
@@ -15,10 +16,18 @@ import {
   getVideoSchema,
   removeFromFavSchema,
 } from "./video.validation.js";
+import { upload } from "../../utils/multer.js";
+
 const router = Router();
 
 // add video
-router.post("/new", isAuthenticated, isValid(addVideoSchema), addVideo);
+router.post(
+  "/new",
+  isAuthenticated,
+  upload.single("video"),
+  isValid(addVideoSchema),
+  uploadVideo
+);
 
 // get all videos
 router.get("/all", isAuthenticated, getAllVideos);
