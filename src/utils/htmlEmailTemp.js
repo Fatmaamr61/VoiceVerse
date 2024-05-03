@@ -181,7 +181,7 @@ export const passwordResetTemplate = (code) => `<!DOCTYPE html>
     <!-- Your meta tags and styles here -->
 </head>
 <body style="background-color: #54599b; margin: 0 !important; padding: 0 !important;">
-<div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;"> Password reset instructions. </div>
+<div style="display: none; font-size: 1px; color: #000000; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;"> Password reset instructions. </div>
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
     <!-- LOGO -->
     <tr>
@@ -193,41 +193,33 @@ export const passwordResetTemplate = (code) => `<!DOCTYPE html>
         <td bgcolor="#54599b" align="center" style="padding: 0px 10px 0px 10px;">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                 <tr>
-                    <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                        <h1 style="font-size: 48px; font-weight: 400; margin: 2;">Password Reset</h1> <img src="https://cdn.discordapp.com/attachments/880207110607081505/1235602272499531816/WhatsApp_Image_2024-05-02_at_17.18.32.png?ex=6635a08a&is=66344f0a&hm=fca0a4ae7351d335b650a9daaa6bf10ef81a9728e4a89665e0febff1aafd59ce&" width="125" height="120" style="display: block; border: 0px;" />
+                    <td bgcolor="#131212" align="center" valign="top" style="padding: 60px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #ffffff; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
+                        <h1 style="font-size: 48px; font-weight: 400; margin: 2;">Password Reset</h1> <img src="https://cdn.discordapp.com/attachments/880207110607081505/1235602272499531816/WhatsApp_Image_2024-05-02_at_17.18.32.png?ex=6635a08a&is=66344f0a&hm=fca0a4ae7351d335b650a9daaa6bf10ef81a9728e4a89665e0febff1aafd59ce&" width="300" height="" style="display: block; border: 0px;" />
                     </td>
                 </tr>
             </table>
         </td>
     </tr>
     <tr>
-        <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
+        <td bgcolor="#54599b" align="center" style="padding: 0px 10px 0px 10px;">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                 <tr>
                     <td bgcolor="#ffffff" align="left">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 30px 30px;">
-                                    <table border="0" cellspacing="0" cellpadding="0">
-                                        <tr>
-                                            <td align="center" style="border-radius: 3px;" bgcolor="#54599b">                            
-                                                <a href="link" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff ; text-decoration: none; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #54599b; display: inline-block;">Reset Password</a> 
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
+                                
                             </tr>
                         </table>
                     </td>
                 </tr>
                 <tr>
-                    <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 20px 30px; color: black; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                    <td bgcolor="#131212" align="left" style="padding: 40px 30px 20px 30px; color: rgb(255, 255, 255); font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                         <p style="margin: 0;">To reset your password, please use the following code:</p>
                         <p style="margin: 0; font-size: 24px; font-weight: bold; color: #54599b;">${code}</p>
                     </td>
                 </tr>
                 <tr>
-                    <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 40px 30px; border-radius: 0px 0px 4px 4px; color: black; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                    <td bgcolor="#131212" align="left" style="padding: 20px 80px 40px 30px; border-radius: 0px 0px 4px 4px; color: rgb(255, 255, 255); font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                         <p style="margin: 0;">If you didn't request this password reset, please ignore this email.</p>
                         <p style="margin: 0;">If you have any questions, feel free to contact us.</p>
                     </td>
