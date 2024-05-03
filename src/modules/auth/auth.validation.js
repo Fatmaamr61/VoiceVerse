@@ -20,15 +20,15 @@ export const registerSchema = joi
       .required(),
     password: joi
       .string()
-      .pattern(
+      /* .pattern(
         new RegExp(
           "^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*\\d)[A-Za-z\\d!@#$%^&*]{8,}$"
         )
-      ) // At least one uppercase, one special character, one digit, and minimum 8 characters
+      ) */ // At least one uppercase, one special character, one digit, and minimum 8 characters
       .required()
       .messages({
-        "string.pattern.base":
-          "Password should contain at least one uppercase letter, one special character, one digit, and be minimum 8 characters long",
+        /* "string.pattern.base":
+          "Password should contain at least one uppercase letter, one special character, one digit, and be minimum 8 characters long" */
         "any.required": "Password is required",
       }),
     cPassword: joi.string().valid(joi.ref("password")).required().messages({
