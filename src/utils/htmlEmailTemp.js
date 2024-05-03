@@ -76,7 +76,7 @@ export const signUpTemp = (link) => `<!DOCTYPE html>
             width: 100% !important;
         }
 
-        /* iOS CornflowerBlue LINKS */
+        /* iOS #54599b LINKS */
         a[x-apple-data-detectors] {
             color: inherit !important;
             text-decoration: none !important;
@@ -101,13 +101,13 @@ export const signUpTemp = (link) => `<!DOCTYPE html>
     </style>
 </head>
 
-<body style="background-color: #0000FF; margin: 0 !important; padding: 0 !important;">
+<body style="background-color: #ffffff; margin: 0 !important; padding: 0 !important;">
 <!-- HIDDEN PREHEADER TEXT -->
-<div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;"> We're thrilled to have you here! Get ready to dive into your new account. </div>
+<div style="display: none; font-size: 1px; color: #131212; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;"> We're thrilled to have you here! Get ready to dive into your new account. </div>
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
     <!-- LOGO -->
     <tr>
-        <td bgcolor="CornflowerBlue" align="center">
+        <td bgcolor="#54599b" align="center">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                 <tr>
                     <td align="center" valign="top" style="padding: 40px 10px 40px 10px;"> </td>
@@ -116,18 +116,18 @@ export const signUpTemp = (link) => `<!DOCTYPE html>
         </td>
     </tr>
     <tr>
-        <td bgcolor="CornflowerBlue" align="center" style="padding: 0px 10px 0px 10px;">
+        <td bgcolor="#54599b" align="center" style="padding: 0px 10px 0px 10px;">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                 <tr>
-                    <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                        <h1 style="font-size: 48px; font-weight: 400; margin: 2;">Activation Mail</h1> <img src="https://cdn.discordapp.com/attachments/880207110607081505/1141403183692927046/image.png" width="125" height="120" style="display: block; border: 0px;" />
+                    <td bgcolor="#131212" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #ffffff; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
+                        <h1 style="font-size: 48px; font-weight: 400; margin: 2;">Activation Mail</h1> <img src="https://cdn.discordapp.com/attachments/880207110607081505/1235602272499531816/WhatsApp_Image_2024-05-02_at_17.18.32.png?ex=6635a08a&is=66344f0a&hm=fca0a4ae7351d335b650a9daaa6bf10ef81a9728e4a89665e0febff1aafd59ce&" width="350" height="120" style="display: block; border: 0px;" />
                     </td>
                 </tr>
             </table>
         </td>
     </tr>
     <tr>
-        <td bgcolor="#f4f4f4" align="center" style="padding: 0px 10px 0px 10px;">
+        <td bgcolor="#54599b" align="center" style="padding: 0px 10px 0px 10px;">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                <!-- <tr>
                     <td bgcolor="#ffffff" align="left" style="padding: 20px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
@@ -135,14 +135,15 @@ export const signUpTemp = (link) => `<!DOCTYPE html>
                     </td>
                 </tr>-->
                 <tr>
-                    <td bgcolor="#ffffff" align="left">
+                    <td bgcolor="#131212" align="left">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 30px 30px;">
+                                <td bgcolor="#131212" align="center" style="padding: 20px 30px 30px 30px;">
                                     <table border="0" cellspacing="0" cellpadding="0">
                                         <tr>
-                                            <td align="center" style="border-radius: 3px;" bgcolor="CornflowerBlue">                            
-                                                <a href="${link}" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff ; text-decoration: none; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid CornflowerBlue; display: inline-block;">Activate Account</a> 
+                                            <td align="center" style="border-radius: 3px;" bgcolor="
+                                            ">                            
+                                                <a href="${link}" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff ; text-decoration: none; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #54599b; display: inline-block;">Activate Account</a> 
                                             </td>
                                         </tr>
                                     </table>
@@ -152,12 +153,12 @@ export const signUpTemp = (link) => `<!DOCTYPE html>
                     </td>
                 </tr> <!-- COPY -->
                 <tr>
-                    <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 20px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                    <td bgcolor="#131212" align="left" style="padding: 0px 30px 20px 30px; color: #ffffff; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                         <p style="margin: 0;">If you have any questions, just reply to this email&mdash;we're always happy to help out.</p>
                     </td>
                 </tr>
                 <tr>
-                    <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 40px 30px; border-radius: 0px 0px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
+                    <td bgcolor="#131212" align="left" style="padding: 0px 30px 40px 30px; border-radius: 0px 0px 4px 4px; color: #ffffff; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                         <p style="margin: 0;">Follow us on:</p>
                         <div>
                             <a style="padding-right:10px" href="https://instagram.com/suraj_vsk"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" width="25"></a>
@@ -179,21 +180,21 @@ export const passwordResetTemplate = (code) => `<!DOCTYPE html>
     <title>Password Reset</title>
     <!-- Your meta tags and styles here -->
 </head>
-<body style="background-color: CornflowerBlue; margin: 0 !important; padding: 0 !important;">
+<body style="background-color: #54599b; margin: 0 !important; padding: 0 !important;">
 <div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: 'Lato', Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;"> Password reset instructions. </div>
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
     <!-- LOGO -->
     <tr>
-        <td bgcolor="CornflowerBlue" align="center">
+        <td bgcolor="#54599b" align="center">
             <!-- Your logo table here -->
         </td>
     </tr>
     <tr>
-        <td bgcolor="CornflowerBlue" align="center" style="padding: 0px 10px 0px 10px;">
+        <td bgcolor="#54599b" align="center" style="padding: 0px 10px 0px 10px;">
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                 <tr>
                     <td bgcolor="#ffffff" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                        <h1 style="font-size: 48px; font-weight: 400; margin: 2;">Password Reset</h1> <img src="https://cdn.discordapp.com/attachments/880207110607081505/1142832746549477460/image.png" width="125" height="120" style="display: block; border: 0px;" />
+                        <h1 style="font-size: 48px; font-weight: 400; margin: 2;">Password Reset</h1> <img src="https://cdn.discordapp.com/attachments/880207110607081505/1235602272499531816/WhatsApp_Image_2024-05-02_at_17.18.32.png?ex=6635a08a&is=66344f0a&hm=fca0a4ae7351d335b650a9daaa6bf10ef81a9728e4a89665e0febff1aafd59ce&" width="125" height="120" style="display: block; border: 0px;" />
                     </td>
                 </tr>
             </table>
@@ -209,8 +210,8 @@ export const passwordResetTemplate = (code) => `<!DOCTYPE html>
                                 <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 30px 30px;">
                                     <table border="0" cellspacing="0" cellpadding="0">
                                         <tr>
-                                            <td align="center" style="border-radius: 3px;" bgcolor="CornflowerBlue">                            
-                                                <a href="link" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff ; text-decoration: none; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid CornflowerBlue; display: inline-block;">Reset Password</a> 
+                                            <td align="center" style="border-radius: 3px;" bgcolor="#54599b">                            
+                                                <a href="link" style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff ; text-decoration: none; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid #54599b; display: inline-block;">Reset Password</a> 
                                             </td>
                                         </tr>
                                     </table>
@@ -222,7 +223,7 @@ export const passwordResetTemplate = (code) => `<!DOCTYPE html>
                 <tr>
                     <td bgcolor="#ffffff" align="left" style="padding: 0px 30px 20px 30px; color: black; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;">
                         <p style="margin: 0;">To reset your password, please use the following code:</p>
-                        <p style="margin: 0; font-size: 24px; font-weight: bold; color: CornflowerBlue;">${code}</p>
+                        <p style="margin: 0; font-size: 24px; font-weight: bold; color: #54599b;">${code}</p>
                     </td>
                 </tr>
                 <tr>
