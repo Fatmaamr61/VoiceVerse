@@ -8,10 +8,3 @@ services:
     environment:
       - NODE_ENV=production
     command: npm start
-  flask:
-    build: 
-      context: .
-      target: python-production
-      dockerfile: Python/Dockerfile
-    command:  python3.11 Flask/app.py
-    # command: gunicorn -w 4 -b 0.0.0.0:6000 wsgi:Flask/app
