@@ -258,11 +258,12 @@ export const accountActivatedTemplate = () => `<!DOCTYPE html>
 <body>
     <div class="container">
         <div class="logo">
-            <img src="https://cdn.discordapp.com/attachments/880207110607081505/1235602272499531816/WhatsApp_Image_2024-05-02_at_17.18.32.png?ex=6634f7ca&is=6633a64a&hm=2bd99d7d5e675f67ccbf16c18ede7b388587cea41080561f20ba7a58472c39ef&" alt="Your Logo" width="500"> <!-- Adjust width as needed -->
+            <img src="https://res.cloudinary.com/dc4zgmrmf/image/upload/v1715029680/VoiceVerse%20defaults/logo.png" alt="Your Logo" width="450"> <!-- Adjust width as needed -->
         </div>
         <h1 width="200">Congratulations!</h1>
         <p>Your account has been activated. You can log in now.</p>
     </div>
 </body>
 </html>
+
 `;
