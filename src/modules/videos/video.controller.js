@@ -69,17 +69,17 @@ export const getAllVideos = asyncHandler(async (req, res, next) => {
 });
 
 export const addFavorite = asyncHandler(async (req, res, next) => {
-  const { url } = req.body;
-
+  const { id } = req.params;
+  console.log(id);
   // check if video exist
-  const video = await Video.findOne({ url });
+  const video = await Video.findById(id);
   if (!video) return next(new Error("video not found!", { cause: 404 }));
-  console.log("vidd: ", video._id.toString());
+  console.log("vidd: ", video);
 
   // check if video already exist in user's favorites
   const addedVid = await Favorites.findOne({
     user: req.user._id,
-    "videos.url": url,
+    "videos.id": id,
   });
   console.log("iddd", addedVid);
   if (addedVid) return next(new Error("already added to favorites"));
@@ -87,9 +87,15 @@ export const addFavorite = asyncHandler(async (req, res, next) => {
   // add to fav
   const fav = await Favorites.findOneAndUpdate(
     { user: req.user._id },
-    { $push: { videos: { id: video._id, url: url } } },
+    { $push: { videos: { id: id } } },
     { new: true }
-  ).populate("videos");
+  ).populate({
+    path: "videos",
+    populate: {
+      path: "id",
+      model: "video",
+    },
+  });
 
   return res.json({
     success: true,

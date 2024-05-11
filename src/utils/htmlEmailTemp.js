@@ -120,7 +120,7 @@ export const signUpTemp = (link) => `<!DOCTYPE html>
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                 <tr>
                     <td bgcolor="#131212" align="center" valign="top" style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #ffffff; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                        <h1 style="font-size: 48px; font-weight: 400; margin: 2;">Activation Mail</h1> <img src="https://cdn.discordapp.com/attachments/880207110607081505/1235602272499531816/WhatsApp_Image_2024-05-02_at_17.18.32.png?ex=6635a08a&is=66344f0a&hm=fca0a4ae7351d335b650a9daaa6bf10ef81a9728e4a89665e0febff1aafd59ce&" width="350" height="120" style="display: block; border: 0px;" />
+                        <h1 style="font-size: 48px; font-weight: 400; margin: 2;">Activation Mail</h1> <img src="https://res.cloudinary.com/dc4zgmrmf/image/upload/v1715029680/VoiceVerse%20defaults/logo.png" width="350" height="120" style="display: block; border: 0px;" />
                     </td>
                 </tr>
             </table>
@@ -194,7 +194,7 @@ export const passwordResetTemplate = (code) => `<!DOCTYPE html>
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
                 <tr>
                     <td bgcolor="#131212" align="center" valign="top" style="padding: 60px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #ffffff; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 4px; line-height: 48px;">
-                        <h1 style="font-size: 48px; font-weight: 400; margin: 2;">Password Reset</h1> <img src="https://cdn.discordapp.com/attachments/880207110607081505/1235602272499531816/WhatsApp_Image_2024-05-02_at_17.18.32.png?ex=6635a08a&is=66344f0a&hm=fca0a4ae7351d335b650a9daaa6bf10ef81a9728e4a89665e0febff1aafd59ce&" width="300" height="" style="display: block; border: 0px;" />
+                        <h1 style="font-size: 48px; font-weight: 400; margin: 2;">Password Reset</h1> <img src="https://res.cloudinary.com/dc4zgmrmf/image/upload/v1715029680/VoiceVerse%20defaults/logo.png" width="300" height="" style="display: block; border: 0px;" />
                     </td>
                 </tr>
             </table>
@@ -258,7 +258,7 @@ export const accountActivatedTemplate = () => `<!DOCTYPE html>
 <body>
     <div class="container">
         <div class="logo">
-            <img src="https://res.cloudinary.com/dc4zgmrmf/image/upload/v1715029680/VoiceVerse%20defaults/logo.png" alt="Your Logo" width="450"> <!-- Adjust width as needed -->
+            <img src="https://res.cloudinary.com/dc4zgmrmf/image/upload/v1715029680/VoiceVerse%20defaults/logo.png" alt="Your Logo" width="400"> <!-- Adjust width as needed -->
         </div>
         <h1 width="200">Congratulations!</h1>
         <p>Your account has been activated. You can log in now.</p>

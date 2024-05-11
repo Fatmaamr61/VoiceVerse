@@ -13,7 +13,7 @@ export const getVideoSchema = joi.object({
 
 // add to favorites
 export const addToFavSchema = joi.object({
-  url: joi.string().required(),
+  id: joi.string(),
 });
 
 // remove from favorite

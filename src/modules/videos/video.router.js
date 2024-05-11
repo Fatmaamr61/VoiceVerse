@@ -37,7 +37,7 @@ router.get("/", isAuthenticated, isValid(getVideoSchema), getVideo);
 
 // add to favorite
 router.post(
-  "/favorites/add",
+  "/favorites/add/:id",
   isAuthenticated,
   isValid(addToFavSchema),
   addFavorite
