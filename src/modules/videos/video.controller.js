@@ -122,21 +122,30 @@ export const getFavorites = asyncHandler(async (req, res, next) => {
 
 export const removeFromFavorite = asyncHandler(async (req, res, next) => {
   const userID = req.user._id;
-  const { url } = req.body;
+  const { id } = req.params;
 
-  console.log("Received URL:", url);
-
-  // Check authority
-  const checkUser = await Favorites.findOne({ user: userID });
-  if (!checkUser) {
-    console.log("User not authorized");
-    return next(new Error("Not authorized user", { cause: 401 }));
-  }
+  // check if video exist
+  const video = await Video.findById(id);
+  if (!video) return next(new Error("video not found!", { cause: 404 }));
+  console.log("vidd: ", video);
 
   const userFav = await Favorites.findOne({ user: userID });
 
+  console.log("ID to remove:", id);
+  console.log(
+    "Favorites before removal:",
+    userFav.videos.map((video) => video.id.toString())
+  );
+
   // Remove vid url from fav
-  const updatedFavorites = userFav.videos.filter((video) => video.url !== url);
+  const updatedFavorites = userFav.videos.filter(
+    (video) => video.id.toString() !== id.toString()
+  );
+  console.log(
+    "Favorites after removal:",
+    updatedFavorites.map((video) => video.id.toString())
+  );
+
   userFav.videos = updatedFavorites;
   await userFav.save();
 

@@ -264,6 +264,4 @@ export const accountActivatedTemplate = () => `<!DOCTYPE html>
         <p>Your account has been activated. You can log in now.</p>
     </div>
 </body>
-</html>
-
-`;
+</html>`;

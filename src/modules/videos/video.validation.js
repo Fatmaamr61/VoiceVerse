@@ -18,5 +18,5 @@ export const addToFavSchema = joi.object({
 
 // remove from favorite
 export const removeFromFavSchema = joi.object({
-  url: joi.string().required(),
+  id: joi.string().required(),
 });

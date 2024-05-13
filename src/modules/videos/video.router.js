@@ -48,7 +48,7 @@ router.get("/favorites", isAuthenticated, getFavorites);
 
 // remove from favorite
 router.delete(
-  "/favorites/delete",
+  "/favorites/delete/:id",
   isAuthenticated,
   isValid(removeFromFavSchema),
   removeFromFavorite
