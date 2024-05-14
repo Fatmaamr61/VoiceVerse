@@ -1,7 +1,7 @@
 import multer, { diskStorage } from "multer";
 
 const filterObject = {
-  image: ["image/png", "image/jpeg"],
+  image: ["image/png", "image/jpeg", "image/jpg"],
   pdf: ["application/pdf"],
   video: ["video/mp4"],
 };
@@ -26,9 +26,13 @@ function fileFilter(req, file, cb) {
     // Accept the file if its mimetype matches any of the accepted mimetypes for video
     return cb(null, true);
   }
+  if (filterObject.image.includes(file.mimetype)) {
+    // Accept the file if its mimetype matches any of the accepted mimetypes for video
+    return cb(null, true);
+  }
 
   // Reject the file if its mimetype doesn't match any of the accepted mimetypes for video
-  cb(new Error("Invalid video file"));
+  cb(new Error("Invalid file"));
 }
 
 const storage = multer.diskStorage({

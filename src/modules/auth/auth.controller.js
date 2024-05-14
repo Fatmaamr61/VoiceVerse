@@ -153,7 +153,7 @@ export const profilePic = asyncHandler(async (req, res, next) => {
   // upload profile image
   const { secure_url, public_id } = await cloudinary.uploader.upload(
     req.file.path,
-    {
+    {resource_type: "image",
       folder: `${process.env.FOLDER_CLOUD_NAME}/ProfilePics/${id}/${cloudFolder}`,
     }
   );
