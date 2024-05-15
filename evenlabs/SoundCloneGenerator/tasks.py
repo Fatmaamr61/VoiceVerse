@@ -20,7 +20,7 @@ downloaderInstance = DOWNLOADER()
 def get_audio_dubbing(instance_obj):
     print(instance_obj)
 
-    video_url = instance_obj.video_url
+    video_url = instance_obj.original_video
 
     downloaderInstance.set_video_url(video_url, "./media/videos")
     audio_file = downloaderInstance.download_audio()
