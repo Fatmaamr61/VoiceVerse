@@ -15,18 +15,21 @@ class DOWNLOADER:
 
         self.base_media_path = os.path.join(os.getcwd(), "media", "audio")
         self.base_original_audios_path = os.path.join(self.base_media_path, "original_audios")
-        self.base_generated_audios_path = os.path.join(self.base_media_path, "enhanced_audios")
+        self.base_enhanced_audios_path = os.path.join(self.base_media_path, "enhanced_audios")
+        self.base_generated_audios_path = os.path.join(self.base_media_path, "generated_audios")
+
+        # self.checkPaths()
 
     def checkPaths(self):
         if os.path.exists(self.base_media_path):
             if not os.path.exists(self.base_original_audios_path):
                 os.makedirs(self.base_original_audios_path)
-            if not os.path.exists(self.base_generated_audios_path):
-                os.makedirs(self.base_generated_audios_path)
+            if not os.path.exists(self.base_enhanced_audios_path):
+                os.makedirs(self.base_enhanced_audios_path)
         else:
             os.makedirs(self.base_media_path)
             os.makedirs(self.base_original_audios_path)
-            os.makedirs(self.base_generated_audios_path)
+            os.makedirs(self.base_enhanced_audios_path)
 
     def set_video_url(self, video_url, output_path):
         self.video_url = video_url
@@ -96,7 +99,7 @@ class DOWNLOADER:
 
         #return output_audio
         sr = 44100
-        output_audio_enhanced = os.path.join(self.base_generated_audios_path, "enhancedAudio.wav")
+        output_audio_enhanced = os.path.join(self.base_enhanced_audios_path, "enhancedAudio.wav")
         # Read the input audio file
         with AudioFile(output_audio).resampled_to(sr) as f:
             audio = f.read(f.frames)

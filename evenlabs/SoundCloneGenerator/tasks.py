@@ -20,7 +20,9 @@ downloaderInstance = DOWNLOADER()
 def get_audio_dubbing(instance_obj):
     print(instance_obj)
 
-    downloaderInstance.set_video_url("https://www.youtube.com/watch?v=JzPfMbG1vrE", "./media/videos")
+    video_url = instance_obj.video_url
+
+    downloaderInstance.set_video_url(video_url, "./media/videos")
     audio_file = downloaderInstance.download_audio()
 
     translated_text = translatorInstance.run(audio_file)
