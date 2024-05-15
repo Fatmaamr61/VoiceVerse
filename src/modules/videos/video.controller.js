@@ -4,6 +4,8 @@ import { Favorites } from "../../../db/models/favorites.model.js";
 import cloudinary from "../../utils/cloud.js";
 import axios from "axios";
 import { response } from "express";
+import { User } from "../../../db/models/user.model.js";
+import mongoose from "mongoose";
 
 export const addVideo = asyncHandler(async (req, res, next) => {
   const id = req.user._id;
@@ -67,6 +69,26 @@ export const getAllVideos = asyncHandler(async (req, res, next) => {
   const videos = await Video.find().populate("user", "userName profileImage");
   if (!videos) return next(new Error("no video found!", { cause: 404 }));
 
+  return res.json({ success: true, results: videos });
+});
+
+export const getUserVideos = asyncHandler(async (req, res, next) => {
+  const { user } = req.params;
+
+  // First, verify that the userId is provided and valid
+  if (!user) {
+    return res.status(400).json({ message: "User ID is required" });
+  }
+  // Check if user exists
+  const userExists = await User.findById(user);
+  if (!userExists) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  // Fetch all videos associated with the userId
+  const videos = await Video.find({ user });
+
+  // Return the videos to the client
   return res.json({ success: true, results: videos });
 });
 
@@ -178,5 +200,4 @@ export const soundCLone = asyncHandler(async (req, res, next) => {
       // console.error("Something went wrong!", error);
     });
   return res.json(response.data);
-  
 });

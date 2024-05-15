@@ -6,6 +6,7 @@ import {
   addVideo,
   getAllVideos,
   getFavorites,
+  getUserVideos,
   getVideo,
   removeFromFavorite,
   soundCLone,
@@ -35,6 +36,9 @@ router.get("/all", isAuthenticated, getAllVideos);
 
 // get video
 router.get("/", isAuthenticated, isValid(getVideoSchema), getVideo);
+
+// get user's videos
+router.get("/user/:user", isAuthenticated, getUserVideos);
 
 // add to favorite
 router.post(
