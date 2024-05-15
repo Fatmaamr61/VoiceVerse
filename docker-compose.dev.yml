@@ -6,7 +6,21 @@ services:
       dockerfile: nodejs/Dockerfile
       target: development
     volumes:
-      - .:/app:ro
+      - .:/app:rw
     environment:
       - NODE_ENV=development
     command: npm run start-dev
+
+  django-app:
+    build:
+      context: ./evenlabs
+      dockerfile: Dockerfile
+      target: development
+#    volumes:
+#      - ./evenlabs:/usr/src/app:rw
+#      - static:/usr/src/app/static
+#      - .:/app:rw
+    environment:
+#      - DJANGO_SETTINGS_MODULE=Core.settings.development
+      - DJANGO_SETTINGS_MODULE=Core.settings
+    command: python manage.py runserver 0.0.0.0:8000

@@ -8,3 +8,14 @@ services:
     environment:
       - NODE_ENV=production
     command: npm start
+
+  django-app:
+    build:
+      context: .
+      target: production
+      dockerfile: python/Dockerfile
+    environment:
+      - DJANGO_ENV=production
+#      - BASE_URL=https://api.twiscope.net/
+      - EMAIL_PORT=587
+    command: gunicorn -w 4 -b 0.0.0.0:8000 Core.wsgi:app
