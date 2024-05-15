@@ -73,20 +73,23 @@ export const getAllVideos = asyncHandler(async (req, res, next) => {
 });
 
 export const getUserVideos = asyncHandler(async (req, res, next) => {
-  const { user } = req.params;
+  const user = req.user._id;
+  console.log(user);
+  const userId = user.toString();
+  console.log(userId);
 
   // First, verify that the userId is provided and valid
-  if (!user) {
+  if (!userId) {
     return res.status(400).json({ message: "User ID is required" });
   }
   // Check if user exists
-  const userExists = await User.findById(user);
+  const userExists = await User.findById(userId);
   if (!userExists) {
     return res.status(404).json({ message: "User not found" });
   }
 
   // Fetch all videos associated with the userId
-  const videos = await Video.find({ user });
+  const videos = await Video.find({ user: userId });
 
   // Return the videos to the client
   return res.json({ success: true, results: videos });

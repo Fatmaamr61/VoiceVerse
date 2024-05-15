@@ -38,7 +38,7 @@ router.get("/all", isAuthenticated, getAllVideos);
 router.get("/", isAuthenticated, isValid(getVideoSchema), getVideo);
 
 // get user's videos
-router.get("/user/:user", isAuthenticated, getUserVideos);
+router.get("/user", isAuthenticated, getUserVideos);
 
 // add to favorite
 router.post(
