@@ -1,0 +1,18 @@
+version: "3.11"
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    command: gunicorn -w 4 -b 0.0.0.0:8000 Core.wsgi:app
+    environment:
+      - DJANGO_ENV=production
+      - BASE_URL=https://api.twiscope.net/
+      - EMAIL_PORT=465
+  celery:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production

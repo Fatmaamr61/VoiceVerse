@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TwiScope - Your Twitter Analysis Tool</title>
+    <style>
+        /* CSS styles for the entire page */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 36px;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .description {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* Styles for the main section */
+        .main-section {
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .main-section h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .feature i {
+            font-size: 36px;
+            margin-right: 20px;
+            color: #007BFF;
+        }
+
+        /* Styles for the call to action section */
+        .cta {
+            background-color: #007BFF;
+            color: #fff;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .cta h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .cta .btn {
+            background-color: #fff;
+            color: #007BFF;
+            font-size: 18px;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 20px; /* Add margin to separate buttons */
+        }
+
+        /* Add more styles as needed */
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>TwiScope - Your Twitter Analysis Tool</h1>
+    </header>
+    <div class="container">
+        <section class="main-section">
+            <h2>Welcome to TwiScope</h2>
+            <p class="description">TwiScope is a powerful Twitter analysis tool that allows you to gain insights into Twitter data.</p>
+
+            <div class="feature">
+                <i class="fas fa-chart-bar"></i>
+                <div>
+                    <h3>Twitter Analytics</h3>
+                    <p>Get detailed analytics and insights into Twitter data, including user engagement and trends.</p>
+                </div>
+            </div>
+
+            <div class="feature">
+                <i class="fas fa-search"></i>
+                <div>
+                    <h3>Search Tweets</h3>
+                    <p>Search for tweets by keywords, hashtags, or user accounts to gather data for analysis.</p>
+                </div>
+            </div>
+
+            <div class="feature">
+                <i class="fas fa-users"></i>
+                <div>
+                    <h3>User Metrics</h3>
+                    <p>Track user metrics, including followers, following, and user activity over time.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to get started?</h2>
+            <p>Sign up or log in now and unlock the power of TwiScope for your Twitter analysis needs.</p>
+            <a href="/api/auth/users" class="btn">Sign Up</a>
+            <a href="/api/auth/login" class="btn">Log In</a> <!-- Add a login link/button -->
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 TwiScope</p>
+        </div>
+    </footer>
+
+    <!-- Include Font Awesome for icons (you may need to add this externally) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</body>
+</html>

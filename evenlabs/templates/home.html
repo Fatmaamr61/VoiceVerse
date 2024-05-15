@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Your Dashboard</title>
+
+    <link rel="stylesheet" href="{% static 'home/styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <h1>Welcome to Your Dashboard</h1>
+                <ul>
+                    <li><a href="/profile">My Profile</a></li>
+                    <li><a href="/settings">Settings</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Hello, {{ user.username }}!</h2>
+                <p>Welcome to your personalized dashboard where you can manage your account effortlessly.</p>
+                <a href="/profile" class="button">Edit Profile</a>
+            </div>
+        </section>
+        <section class="features">
+            <div class="container">
+                <h2>Dashboard Features</h2>
+                <div class="feature">
+                    <i class="fas fa-user-circle"></i>
+                    <div class="feature-content">
+                        <h3>My Profile</h3>
+                        <p>View and update your profile information, including your photo and contact details.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-cog"></i>
+                    <div class="feature-content">
+                        <h3>Settings</h3>
+                        <p>Customize your dashboard settings and preferences, including notifications and privacy settings.</p>
+                    </div>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <div class="feature-content">
+                        <h3>Logout</h3>
+                        <p>Securely log out from your account to protect your data.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 TwiScope</p>
+        </div>
+    </footer>
+</body>
+</html>

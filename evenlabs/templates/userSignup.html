@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Signup</title>
+    <link rel="stylesheet" href="{% static 'signup/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Twiscope!</h1>
+        <p>Create your account below:</p>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>User Signup</h2>
+            <form action="#" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% for error in field.errors %}
+                            <div class="error">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
+                <div class="form-group">
+                    <button type="submit">Sign Up</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="illustration">
+            <img src="{% static 'icons/twiscope_logo.png' %}" alt="Illustration">
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2023 Twiscope. All rights reserved.
+    </footer>
+</body>
+</html>
