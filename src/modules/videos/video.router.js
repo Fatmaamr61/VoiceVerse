@@ -8,6 +8,7 @@ import {
   getFavorites,
   getVideo,
   removeFromFavorite,
+  soundCLone,
   uploadVideo,
 } from "./video.controller.js";
 import {
@@ -53,5 +54,8 @@ router.delete(
   isValid(removeFromFavSchema),
   removeFromFavorite
 );
+
+// soundClone
+router.post("/soundClone", soundCLone);
 
 export default router;

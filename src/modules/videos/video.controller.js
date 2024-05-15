@@ -2,6 +2,8 @@ import { asyncHandler } from "../../utils/asyncHandler.js";
 import { Video } from "../../../db/models/videos.model.js";
 import { Favorites } from "../../../db/models/favorites.model.js";
 import cloudinary from "../../utils/cloud.js";
+import axios from "axios";
+import { response } from "express";
 
 export const addVideo = asyncHandler(async (req, res, next) => {
   const id = req.user._id;
@@ -152,4 +154,29 @@ export const removeFromFavorite = asyncHandler(async (req, res, next) => {
   console.log("Updated Document:", updatedFavorites);
 
   return res.json({ success: true, results: updatedFavorites });
+});
+
+export const soundCLone = asyncHandler(async (req, res, next) => {
+  const { description, title, original_video } = req.body;
+  const soundCloneBaseUrl =
+    "http://django-app:8000/api/v1/dubbing/audio-dubbing/";
+
+  const data = {
+    title: title,
+    description: description,
+    original_video: original_video,
+  };
+
+  const result = await axios
+    .post(soundCloneBaseUrl, data)
+    .then((response) => {
+      console.log("Status Code:", response.status);
+      console.log("Body:", response.data);
+    })
+    .catch((error) => {
+      console.error("error:  ", error);
+      // console.error("Something went wrong!", error);
+    });
+  return res.json(response.data);
+  
 });
