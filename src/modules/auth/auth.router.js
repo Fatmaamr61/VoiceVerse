@@ -91,4 +91,5 @@ router.get("/logout", isAuthenticated, logOut);
 // delete account
 router.delete("/account/delete", isAuthenticated, deleteAccount);
 
+
 export default router;
