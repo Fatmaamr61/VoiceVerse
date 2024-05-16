@@ -37,8 +37,8 @@ class AudioProcessor:
 
         original_text, original_lang = self.extract_text_from_audio(audio_file_path)
         # print("Original text:", input_text)
-        edited_text = original_text[:500] if len(original_text) > 500 else original_text
-        translated_text = self.translator.translate(str(edited_text))
+        #edited_text = original_text[:500] if len(original_text) > 500 else original_text
+        translated_text = self.translator.translate(str(original_text))
         print("Translated text:", translated_text)
         return translated_text
         # return translated_text.text
@@ -52,12 +52,12 @@ class AudioProcessor:
 
             try:
                 # Use Google Web Speech API to recognize the speech
-                transcript = recognizer.recognize_google(audio)
+              # transcript = recognizer.recognize_google(audio)
                 # transcript = recognizer.recognize_amazon(audio, bucket_name='voice-verse-bucket',
                 #                                          access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
                 #                                          secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
                 #                                          region="us-east-1")
-                # transcript = recognizer.recognize_vosk(audio)
+                transcript = recognizer.recognize_vosk(audio)
                 # transcript = transcript.get("text")
 
                 try:
