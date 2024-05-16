@@ -192,15 +192,10 @@ export const soundCLone = asyncHandler(async (req, res, next) => {
     original_video: original_video,
   };
 
-  const result = await axios
-    .post(soundCloneBaseUrl, data)
-    .then((response) => {
-      console.log("Status Code:", response.status);
-      console.log("Body:", response.data);
-    })
-    .catch((error) => {
-      console.error("error:  ", error);
-      // console.error("Something went wrong!", error);
-    });
+  const response = await axios.post(soundCloneBaseUrl, data);
+
+  console.log("Status Code:", response.status);
+  console.log("Body:", response.data);
+
   return res.json(response.data);
 });
