@@ -37,8 +37,8 @@ class AudioProcessor:
 
         original_text, original_lang = self.extract_text_from_audio(audio_file_path)
         # print("Original text:", input_text)
-        edited_text = input_text[:500] if len(original_text) > 500 else original_text
-        translated_text = self.translator.translate(str(original_text))
+        edited_text = original_text[:500] if len(original_text) > 500 else original_text
+        translated_text = self.translator.translate(str(edited_text))
         print("Translated text:", translated_text)
         return translated_text
         # return translated_text.text
