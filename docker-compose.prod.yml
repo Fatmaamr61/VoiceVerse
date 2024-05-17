@@ -5,6 +5,9 @@ services:
       context: .
       dockerfile: nodejs/Dockerfile
       target: production
+    volumes:
+      - .:/app:rw
+
     environment:
       - NODE_ENV=production
     command: npm start

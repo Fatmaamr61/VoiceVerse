@@ -5,8 +5,8 @@ services:
       context: .
       dockerfile: nodejs/Dockerfile
       target: development
-#    volumes:
-#      - .:/app:rw
+    volumes:
+      - .:/app:rw
     environment:
       - NODE_ENV=development
     command: npm run start-dev
