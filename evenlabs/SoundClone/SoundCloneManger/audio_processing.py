@@ -48,6 +48,8 @@ class AudioProcessor:
                 #                                          access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
                 #                                          secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
                 #                                          region="us-east-1")
+                # transcript = recognizer.recognize_vosk(audio)
+                # transcript = transcript.get("text")
 
                 # transcript = recognizer.recognize_google(audio)
 
