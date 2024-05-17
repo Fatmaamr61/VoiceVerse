@@ -181,18 +181,36 @@ export const removeFromFavorite = asyncHandler(async (req, res, next) => {
   return res.json({ success: true, results: updatedFavorites });
 });
 
-export const soundCLone = asyncHandler(async (req, res, next) => {
+export const videoDubbing = asyncHandler(async (req, res, next) => {
   const { description, title, original_video } = req.body;
-  const soundCloneBaseUrl =
-    "http://django-app:8000/api/v1/dubbing/video-dubbing/";
+  const dubbingBaseUrl = "http://django-app:8000/api/v1/dubbing/video-dubbing/";
 
   const data = {
-    title: title,
-    description: description,
-    original_video: original_video,
+    title,
+    description,
+    original_video,
   };
 
-  const response = await axios.post(soundCloneBaseUrl, data);
+  const response = await axios.post(dubbingBaseUrl, data);
+
+  console.log("Status Code:", response.status);
+  console.log("Body:", response.data);
+
+  return res.json(response.data);
+});
+
+export const soundCLone = asyncHandler(async (req, res, next) => {
+  const { title, audio_file, textToSpeech } = req.body;
+
+  const soundClonerBaseUrl =
+    "http://django-app:8000/api/v1/dubbing/audio-dubbing/";
+
+  const data = {
+    title,
+    audio_file,
+    textToSpeech,
+  };
+  const response = await axios.post(soundClonerBaseUrl, data);
 
   console.log("Status Code:", response.status);
   console.log("Body:", response.data);

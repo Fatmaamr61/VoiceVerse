@@ -11,6 +11,7 @@ import {
   removeFromFavorite,
   soundCLone,
   uploadVideo,
+  videoDubbing,
 } from "./video.controller.js";
 import {
   addToFavSchema,
@@ -60,6 +61,9 @@ router.delete(
 );
 
 // soundClone
-router.post("/soundClone", soundCLone);
+router.post("/soundCloning", soundCLone);
+
+// dubbing
+router.post("/dubbing", videoDubbing);
 
 export default router;
