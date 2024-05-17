@@ -205,8 +205,8 @@ export const videoDubbing = asyncHandler(async (req, res, next) => {
 });
 
 export const soundCLone = asyncHandler(async (req, res, next) => {
-  //const { title, textToSpeech } = req.body; // Get title and textToSpeech from body
-  //const audio_file = req.file;
+  const { title, textToSpeech } = req.body; // Get title and textToSpeech from body
+  const audio_file = req.file;
 
   const soundClonerBaseUrl =
     "http://django-app:8000/api/v1/dubbing/audio-dubbing/";
