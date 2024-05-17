@@ -6,6 +6,8 @@ import axios from "axios";
 import { User } from "../../../db/models/user.model.js";
 import { Dubbing } from "../../../db/models/dubbing.model.js";
 import { Cloning } from "../../../db/models/cloning.model.js";
+import FormData from "form-data";
+import fs from "fs";
 
 export const addVideo = asyncHandler(async (req, res, next) => {
   const id = req.user._id;
@@ -192,25 +194,30 @@ export const videoDubbing = asyncHandler(async (req, res, next) => {
   };
 
   const response = await axios.post(dubbingBaseUrl, data);
-
   console.log("Status Code:", response.status);
-  console.log("Body:", response.data);
 
-  return res.json(response.data);
+  // Accessing the audio URL directly from the response data
+  const audioUrl = response.data.audio;
+  console.log("Audio URL: ", audioUrl);
+
+  // Returning only the audio URL in the response
+  return res.json({ audioUrl });
 });
 
 export const soundCLone = asyncHandler(async (req, res, next) => {
-  const { title, audio_file, textToSpeech } = req.body;
+  const { title, audio_file, textToSpeech } = req.file;
 
   const soundClonerBaseUrl =
     "http://django-app:8000/api/v1/dubbing/audio-dubbing/";
 
-  const data = {
-    title,
-    audio_file,
-    textToSpeech,
-  };
-  const response = await axios.post(soundClonerBaseUrl, data);
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("textToSpeech", textToSpeech);
+  formData.append("audio_file", fs.createReadStream(audio_file.path));
+
+  const response = await axios.post(soundClonerBaseUrl, formData, {
+    headers: formData.getHeaders(), // Axios will correctly set the Content-Type to multipart/form-data with the boundary.
+  });
 
   console.log("Status Code:", response.status);
   console.log("Body:", response.data);
