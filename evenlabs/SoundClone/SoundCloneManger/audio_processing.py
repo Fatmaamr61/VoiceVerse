@@ -96,7 +96,7 @@ class AudioGenerator:
         # Upload the enhanced audio file
         voice = self.client.clone(
             description=description,
-            name="test123",
+            name=name,
             files=[self.audio_file_path]
         )
 
