@@ -3,9 +3,9 @@ import { Video } from "../../../db/models/videos.model.js";
 import { Favorites } from "../../../db/models/favorites.model.js";
 import cloudinary from "../../utils/cloud.js";
 import axios from "axios";
-import { response } from "express";
 import { User } from "../../../db/models/user.model.js";
-import mongoose from "mongoose";
+import { Dubbing } from "../../../db/models/dubbing.model.js";
+import { Cloning } from "../../../db/models/cloning.model.js";
 
 export const addVideo = asyncHandler(async (req, res, next) => {
   const id = req.user._id;
