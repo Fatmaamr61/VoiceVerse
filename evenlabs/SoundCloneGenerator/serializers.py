@@ -15,7 +15,6 @@ class AudioDubbingSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         obj = VideoDubbing.objects.create(**validated_data)
         result = get_video_dubbing(obj)
-        print(result)
         return result
 
 

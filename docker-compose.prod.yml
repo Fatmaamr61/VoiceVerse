@@ -3,19 +3,23 @@ services:
   node-app:
     build: 
       context: .
-      target: production
       dockerfile: nodejs/Dockerfile
+      target: production
+#    volumes:
+#      - .:/app:rw
     environment:
       - NODE_ENV=production
     command: npm start
 
   django-app:
     build:
-      context: .
+      context: ./evenlabs
+      dockerfile: Dockerfile
       target: production
-      dockerfile: python/Dockerfile
+
     environment:
+      - DJANGO_SETTINGS_MODULE=Core.settings
       - DJANGO_ENV=production
 #      - BASE_URL=https://api.twiscope.net/
       - EMAIL_PORT=587
-    command: gunicorn -w 4 -b 0.0.0.0:8000 Core.wsgi:app
+    command: gunicorn -w 4 -b 0.0.0.0:8000 Core.wsgi:app --reload

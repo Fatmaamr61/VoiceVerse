@@ -14,6 +14,6 @@ jobs:
         with:
           ref: master
           clean: false
-      - name:  build docker image
+      - name:  Start voiceVerse-app.service
         run: |
-          sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
+          sudo systemctl restart voiceVerse-app.service
