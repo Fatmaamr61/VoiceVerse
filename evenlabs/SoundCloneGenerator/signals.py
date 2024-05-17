@@ -1,9 +1,9 @@
 from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
-from .models import AudioDubbing
-from .tasks import get_audio_dubbing
+from .models import VideoDubbing
+from .tasks import get_video_dubbing
 
-# @receiver(post_save, sender=AudioDubbing)
+# @receiver(post_save, sender=VideoDubbing)
 # def audio_dubbing_post_save(sender, instance, created, **kwargs):
 #     print("Audio Dubbing Post Save Signal")
 #     print(instance)

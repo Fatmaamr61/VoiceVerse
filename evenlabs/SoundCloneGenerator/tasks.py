@@ -1,5 +1,5 @@
 from celery import shared_task
-from .models import AudioDubbing
+from .models import VideoDubbing
 import os
 # from django.conf import settings
 
@@ -17,7 +17,7 @@ downloaderInstance = DOWNLOADER()
 #     return "audio dubbing"
 
 @shared_task
-def get_audio_dubbing(instance_obj):
+def get_video_dubbing(instance_obj):
     print(instance_obj)
 
     video_url = instance_obj.original_video
@@ -28,7 +28,8 @@ def get_audio_dubbing(instance_obj):
     translated_text = translatorInstance.run(audio_file)
     text_to_speech = AudioGenerator(audio_file)
     audio, generated_audio_path = text_to_speech.generate_audio(translated_text=translated_text,
-                                                                name=instance_obj.title, description=instance_obj.description)
+                                                                name=instance_obj.title,
+                                                                description=instance_obj.description)
 
     audio_file_path = audio_file.split('/')[-1:]
     audio_file_path = os.path.join(*audio_file_path)
@@ -38,5 +39,27 @@ def get_audio_dubbing(instance_obj):
 
     os.remove(generated_audio_path)
     instance_obj.translated_text = translated_text
+
+    return instance_obj
+
+
+@shared_task
+def get_audio_dubbing(instance_obj):
+    audio_file = instance_obj.original_audio
+    # translated_text = translatorInstance.run(audio_file)
+    translated_text = instance_obj.textToSpeech
+    text_to_speech = AudioGenerator(audio_file)
+    audio, generated_audio_path = text_to_speech.generate_audio(translated_text=translated_text,
+                                                                name=instance_obj.title,
+                                                                description="description")
+
+    audio_file_path = audio_file.split('/')[-1:]
+    audio_file_path = os.path.join(*audio_file_path)
+
+    with open(generated_audio_path, 'rb') as f:
+        instance_obj.dubbed_audio.save(audio_file_path, f)
+
+    os.remove(generated_audio_path)
+    instance_obj.textToSpeech = translated_text
 
     return instance_obj

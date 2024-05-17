@@ -184,7 +184,7 @@ export const removeFromFavorite = asyncHandler(async (req, res, next) => {
 export const soundCLone = asyncHandler(async (req, res, next) => {
   const { description, title, original_video } = req.body;
   const soundCloneBaseUrl =
-    "http://django-app:8000/api/v1/dubbing/audio-dubbing/";
+    "http://django-app:8000/api/v1/dubbing/video-dubbing/";
 
   const data = {
     title: title,

@@ -1,20 +1,42 @@
 from rest_framework import serializers
-from .models import AudioDubbing
-from .tasks import get_audio_dubbing
+from .models import VideoDubbing, AudioToAudioDubbing
+from .tasks import get_video_dubbing, get_audio_dubbing
+
+from django.core.files.storage import FileSystemStorage
 
 
 class AudioDubbingSerializer(serializers.ModelSerializer):
     # video_file = serializers.FileField(write_only=True)
 
     class Meta:
-        model = AudioDubbing
+        model = VideoDubbing
         fields = '__all__'
 
     def create(self, validated_data):
-        obj = AudioDubbing.objects.create(**validated_data)
-        result = get_audio_dubbing(obj)
+        obj = VideoDubbing.objects.create(**validated_data)
+        result = get_video_dubbing(obj)
         print(result)
+        return result
 
+
+class AudioToAudioDubbingSerializer(serializers.ModelSerializer):
+    audio_file = serializers.FileField(write_only=True)
+
+    class Meta:
+        model = AudioToAudioDubbing
+        fields = '__all__'
+        extra_kwargs = {
+            'original_audio': {'write_only': True}
+        }
+
+    def create(self, validated_data):
+        audio_file = validated_data.pop('audio_file')
+        audio_fs = FileSystemStorage(location='media/audio')
+        audio_filename = audio_fs.save(audio_file.name, audio_file)
+        audio_local_url = audio_fs.location + '/' + audio_filename
+        validated_data['original_audio'] = audio_local_url
+        obj = AudioToAudioDubbing.objects.create(**validated_data)
+        result = get_audio_dubbing(obj)
         return result
 
 # class AvatarGeneratorSerializer(serializers.ModelSerializer):
