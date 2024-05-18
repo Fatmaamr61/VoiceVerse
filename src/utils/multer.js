@@ -4,7 +4,7 @@ const filterObject = {
   image: ["image/png", "image/jpeg", "image/jpg"],
   pdf: ["application/pdf"],
   video: ["video/mp4"],
-  audio: ["audio/wav"],
+  audio: ["audio/wave"],
 };
 
 // File filter function
