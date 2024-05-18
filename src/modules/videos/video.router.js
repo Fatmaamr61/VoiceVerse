@@ -60,10 +60,10 @@ router.delete(
   removeFromFavorite
 );
 
+// dubbing
+router.post("/dubbing", isAuthenticated, videoDubbing);
+
 // soundClone
 router.post("/soundCloning", soundCLone);
-
-// dubbing
-router.post("/dubbing", videoDubbing);
 
 export default router;

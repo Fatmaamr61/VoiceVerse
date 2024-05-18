@@ -187,21 +187,35 @@ export const videoDubbing = asyncHandler(async (req, res, next) => {
   const { description, title, original_video } = req.body;
   const dubbingBaseUrl = "http://django-app:8000/api/v1/dubbing/video-dubbing/";
 
-  const data = {
+  const requestData = {
     title,
     description,
     original_video,
   };
 
-  const response = await axios.post(dubbingBaseUrl, data);
+  const { data } = await axios.post(dubbingBaseUrl, requestData);
   console.log("Status Code:", response.status);
+  console.log("res: ", data);
 
   // Accessing the audio URL directly from the response data
-  const audioUrl = response.data.audio;
-  console.log("Audio URL: ", audioUrl);
+  const audioUrl = data.audio;
+  console.log("AudioUrl: ", audioUrl);
+
+  const dubbingData = await Dubbing.create({
+    user: req.user._id,
+    title,
+    description,
+    audioUrl,
+    originalVideo: original_video,
+  });
 
   // Returning only the audio URL in the response
-  return res.json({ audioUrl });
+  return res.json({
+    success: true,
+    dubbingData: dubbingData,
+    data: data,
+    audioUrl: audioUrl,
+  });
 });
 
 export const soundCLone = asyncHandler(async (req, res, next) => {
