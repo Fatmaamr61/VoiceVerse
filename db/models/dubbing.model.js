@@ -9,7 +9,7 @@ const dubbingSchema = new Schema(
     title: String,
     description: String,
     translatedText: String,
-    audio: String,
+    audioUrl: String,
     originalVideo: String,
   },
   { timestamps: true }

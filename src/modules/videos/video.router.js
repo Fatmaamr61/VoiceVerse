@@ -64,6 +64,6 @@ router.delete(
 router.post("/dubbing", isAuthenticated, videoDubbing);
 
 // soundClone
-router.post("/soundCloning", soundCLone);
+router.post("/soundCloning", upload.single("audio_file"), soundCLone);
 
 export default router;
