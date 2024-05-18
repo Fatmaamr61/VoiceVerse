@@ -194,7 +194,7 @@ export const videoDubbing = asyncHandler(async (req, res, next) => {
   };
 
   const { data } = await axios.post(dubbingBaseUrl, requestData);
-  console.log("Status Code:", response.status);
+  //console.log("Status Code:", response.status);
   console.log("res: ", data);
 
   // Accessing the audio URL directly from the response data
@@ -212,9 +212,7 @@ export const videoDubbing = asyncHandler(async (req, res, next) => {
   // Returning only the audio URL in the response
   return res.json({
     success: true,
-    dubbingData: dubbingData,
-    data: data,
-    audioUrl: audioUrl,
+    dubbingData,
   });
 });
 
