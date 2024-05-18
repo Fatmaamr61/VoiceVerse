@@ -218,15 +218,17 @@ export const videoDubbing = asyncHandler(async (req, res, next) => {
 
 export const soundCLone = asyncHandler(async (req, res, next) => {
   const { title, textToSpeech } = req.body; // Get title and textToSpeech from body
-  const audio_file = req.file.path;
+  const audio_file = req.file;
   console.log("title: ", title);
-  const soundClonerBaseUrl =
-    "http://django-app:8000/api/v1/dubbing/audio-dubbing/";
+  console.log("textToS: ", textToSpeech);
+  console.log("audio: ", audio_file);
+
+  const soundClonerBaseUrl = "http://django-app:8000/api/v1/dubbing/audio-dubbing/";
 
   const formData = new FormData();
   formData.append("title", title);
   formData.append("textToSpeech", textToSpeech);
-  formData.append("audio_file", audio_file);
+  formData.append("audio_file", fs.createReadStream(audio_file.path));
 
   const response = await axios.post(soundClonerBaseUrl, formData, {
     headers: formData.getHeaders(), // Axios will correctly set the Content-Type to multipart/form-data with the boundary.
