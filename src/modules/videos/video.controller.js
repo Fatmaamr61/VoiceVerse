@@ -3,9 +3,11 @@ import { Video } from "../../../db/models/videos.model.js";
 import { Favorites } from "../../../db/models/favorites.model.js";
 import cloudinary from "../../utils/cloud.js";
 import axios from "axios";
-import { response } from "express";
 import { User } from "../../../db/models/user.model.js";
-import mongoose from "mongoose";
+import { Dubbing } from "../../../db/models/dubbing.model.js";
+import { Cloning } from "../../../db/models/cloning.model.js";
+import FormData from "form-data";
+import fs from "fs";
 
 export const addVideo = asyncHandler(async (req, res, next) => {
   const id = req.user._id;
@@ -185,32 +187,52 @@ export const videoDubbing = asyncHandler(async (req, res, next) => {
   const { description, title, original_video } = req.body;
   const dubbingBaseUrl = "http://django-app:8000/api/v1/dubbing/video-dubbing/";
 
-  const data = {
+  const requestData = {
     title,
     description,
     original_video,
   };
 
-  const response = await axios.post(dubbingBaseUrl, data);
-
+  const { data } = await axios.post(dubbingBaseUrl, requestData);
   console.log("Status Code:", response.status);
-  console.log("Body:", response.data);
+  console.log("res: ", data);
 
-  return res.json(response.data);
+  // Accessing the audio URL directly from the response data
+  const audioUrl = data.audio;
+  console.log("AudioUrl: ", audioUrl);
+
+  const dubbingData = await Dubbing.create({
+    user: req.user._id,
+    title,
+    description,
+    audioUrl,
+    originalVideo: original_video,
+  });
+
+  // Returning only the audio URL in the response
+  return res.json({
+    success: true,
+    dubbingData: dubbingData,
+    data: data,
+    audioUrl: audioUrl,
+  });
 });
 
 export const soundCLone = asyncHandler(async (req, res, next) => {
-  const { title, audio_file, textToSpeech } = req.body;
+  const { title, textToSpeech } = req.body; // Get title and textToSpeech from body
+  const audio_file = req.file;
 
   const soundClonerBaseUrl =
     "http://django-app:8000/api/v1/dubbing/audio-dubbing/";
 
-  const data = {
-    title,
-    audio_file,
-    textToSpeech,
-  };
-  const response = await axios.post(soundClonerBaseUrl, data);
+  const formData = new FormData();
+  formData.append("title", title);
+  formData.append("textToSpeech", textToSpeech);
+  formData.append("audio_file", audio_file);
+
+  const response = await axios.post(soundClonerBaseUrl, formData, {
+    headers: formData.getHeaders(), // Axios will correctly set the Content-Type to multipart/form-data with the boundary.
+  });
 
   console.log("Status Code:", response.status);
   console.log("Body:", response.data);
