@@ -223,7 +223,8 @@ export const soundCLone = asyncHandler(async (req, res, next) => {
   console.log("textToS: ", textToSpeech);
   console.log("audio: ", audio_file);
 
-  const soundClonerBaseUrl = "http://django-app:8000/api/v1/dubbing/audio-dubbing/";
+  const soundClonerBaseUrl =
+    "http://django-app:8000/api/v1/dubbing/audio-dubbing/";
 
   const formData = new FormData();
   formData.append("title", title);
@@ -237,5 +238,12 @@ export const soundCLone = asyncHandler(async (req, res, next) => {
   console.log("Status Code:", response.status);
   console.log("Body:", response.data);
 
-  return res.json(response.data);
+  const cloningData = await Cloning.create({
+    user: req.user._id,
+    title,
+    textToSpeech,
+    clonedAudio: response.data.dubbed_audio,
+  });
+
+  return res.json({ success: true, results: cloningData });
 });
