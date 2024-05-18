@@ -88,7 +88,7 @@ class AudioProcessor:
 
 class AudioGenerator:
     def __init__(self, audio_file_path):
-        self.client = ElevenLabs(api_key='5b6639467f3890f041e9310ab40f9800')
+        self.client = ElevenLabs(api_key='101cfa676366f9e92ccf196c010747fa')
         self.audio_file_path = audio_file_path
         self.translated_text = None
 
