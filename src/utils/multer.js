@@ -7,23 +7,19 @@ const filterObject = {
   audio: ["audio/wav"],
 };
 
+// File filter function
 function fileFilter(req, file, cb) {
-  // Check if the uploaded file's mimetype matches any of the accepted mimetypes for video
-  if (filterObject.video.includes(file.mimetype)) {
-    // Accept the file if its mimetype matches any of the accepted mimetypes for video
-    return cb(null, true);
+  console.log("sent file:  ", file);
+  // Check if the uploaded file's mimetype matches any of the accepted mimetypes
+  if (
+    filterObject.video.includes(file.mimetype) ||
+    filterObject.image.includes(file.mimetype) ||
+    filterObject.audio.includes(file.mimetype)
+  ) {
+    return cb(null, true); // Accept the file
   }
-  if (filterObject.image.includes(file.mimetype)) {
-    // Accept the file if its mimetype matches any of the accepted mimetypes for video
-    return cb(null, true);
-  }
-  if (filterObject.audio.includes(file.mimetype)) {
-    // Accept the file if its mimetype matches any of the accepted mimetypes for video
-    return cb(null, true);
-  }
-
-  // Reject the file if its mimetype doesn't match any of the accepted mimetypes for video
-  cb(new Error("Invalid file"));
+  // Reject the file if its mimetype doesn't match any of the accepted mimetypes
+  cb(new Error("Invalid file type"));
 }
 
 const storage = multer.diskStorage({
