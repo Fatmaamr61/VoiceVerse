@@ -6,11 +6,14 @@ const dubbingSchema = new Schema(
       type: Types.ObjectId,
       ref: "user",
     },
-    title: String,
-    description: String,
-    translatedText: String,
-    audioUrl: String,
-    originalVideo: String,
+    dubbedAudio: [
+      {
+        title: String,
+        description: String,
+        audioUrl: String,
+        originalVideo: String,
+      },
+    ],
   },
   { timestamps: true }
 );

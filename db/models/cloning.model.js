@@ -6,9 +6,7 @@ const cloningmodelSchema = new Schema(
       type: Types.ObjectId,
       ref: "user",
     },
-    title: String,
-    textTospeech: String,
-    clonedAudio: String,
+    clonedAudio: [{ title: String, textToSpeech: String, audioUrl: String }],
   },
   { timestamps: true }
 );

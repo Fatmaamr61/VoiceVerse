@@ -5,6 +5,8 @@ import {
   addFavorite,
   addVideo,
   getAllVideos,
+  getCLoningData,
+  getDubbingData,
   getFavorites,
   getUserVideos,
   getVideo,
@@ -70,5 +72,11 @@ router.post(
   upload.single("audio_file"),
   soundCLone
 );
+
+// get dubbing data
+router.get("/dubbing/data", isAuthenticated, getDubbingData);
+
+// get cloning data
+router.get("/soundCloning/data", isAuthenticated, getCLoningData);
 
 export default router;

@@ -186,7 +186,7 @@ export const removeFromFavorite = asyncHandler(async (req, res, next) => {
 export const videoDubbing = asyncHandler(async (req, res, next) => {
   const { description, title, original_video } = req.body;
   const dubbingBaseUrl = "http://django-app:8000/api/v1/dubbing/video-dubbing/";
-
+  const user = req.user._id;
   const requestData = {
     title,
     description,
@@ -201,13 +201,40 @@ export const videoDubbing = asyncHandler(async (req, res, next) => {
   const audioUrl = data.audio;
   console.log("AudioUrl: ", audioUrl);
 
+  // check if there is dubbing db
+  const userDub = await Dubbing.findOne({ user });
+  if (userDub) {
+    const addToDub = await Dubbing.findOneAndUpdate(
+      { user },
+      {
+        $push: {
+          dubbedAudio: {
+            title,
+            description,
+            audioUrl,
+            originalVideo: original_video,
+          },
+        },
+      },
+      { new: true }
+    );
+    console.log("addToDub: ", addToDub);
+    return res.json({
+      success: true,
+      addToDub,
+    });
+  }
+
   const dubbingData = await Dubbing.create({
-    user: req.user._id,
-    title,
-    description,
-    audioUrl,
-    originalVideo: original_video,
+    user,
+    dubbedAudio: {
+      title,
+      description,
+      audioUrl,
+      originalVideo: original_video,
+    },
   });
+  console.log("dubbingData: ", dubbingData);
 
   // Returning only the audio URL in the response
   return res.json({
@@ -219,6 +246,8 @@ export const videoDubbing = asyncHandler(async (req, res, next) => {
 export const soundCLone = asyncHandler(async (req, res, next) => {
   const { title, textToSpeech } = req.body; // Get title and textToSpeech from body
   const audio_file = req.file;
+  const user = req.user._id;
+
   console.log("title: ", title);
   console.log("textToS: ", textToSpeech);
   console.log("audio: ", audio_file);
@@ -238,12 +267,54 @@ export const soundCLone = asyncHandler(async (req, res, next) => {
   console.log("Status Code:", response.status);
   console.log("Body:", response.data);
 
+  const userClone = await Cloning.findOne({ user });
+  if (userClone) {
+    const addToClone = await Cloning.findOneAndUpdate(
+      { user },
+      {
+        $push: {
+          clonedAudio: {
+            title,
+            textToSpeech,
+            audioUrl: response.data.dubbed_audio,
+          },
+        },
+      },
+      { new: true }
+    );
+    console.log("addToClone: ", addToClone);
+    return res.json({
+      success: true,
+      addToClone,
+    });
+  }
+
   const cloningData = await Cloning.create({
     user: req.user._id,
-    title,
-    textToSpeech,
-    clonedAudio: response.data.dubbed_audio,
+    clonedAudio: {
+      title,
+      textToSpeech,
+      audioUrl: response.data.dubbed_audio,
+    },
   });
 
   return res.json({ success: true, results: cloningData });
+});
+
+export const getDubbingData = asyncHandler(async (req, res, next) => {
+  const user = req.user._id;
+
+  // from dub model
+  const dubbingList = await Dubbing.findOne({ user });
+
+  return res.json(dubbingList);
+});
+
+export const getCLoningData = asyncHandler(async (req, res, next) => {
+  const user = req.user._id;
+
+  // from dub model
+  const cloningList = await Cloning.findOne({ user });
+
+  return res.json(cloningList);
 });
