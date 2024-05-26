@@ -16,7 +16,7 @@ from django.db import models
 #
 
 class VideoDubbing(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=500)
     description = models.TextField()
     translated_text = models.TextField(null=True, blank=True)
     audio = models.FileField(upload_to='audio/', null=True, blank=True)
@@ -29,8 +29,8 @@ class VideoDubbing(models.Model):
 
 
 class AudioToAudioDubbing(models.Model):
-    title = models.CharField(max_length=100)
-    original_audio = models.CharField(max_length=100, null=True, blank=True)
+    title = models.CharField(max_length=500)
+    original_audio = models.CharField(max_length=500, null=True, blank=True)
     dubbed_audio = models.FileField(upload_to='audio/', null=True, blank=True)
     textToSpeech = models.CharField(max_length=500)
     created_at = models.DateTimeField(auto_now_add=True)
