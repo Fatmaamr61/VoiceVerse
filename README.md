@@ -73,6 +73,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 For questions or feedback, feel free to reach out:
 
 - **Author:** Fatma Amr
-- **Email:** (Add email if available)
+- **Email:** fatma.amr6197@gmail.com
 - **GitHub:** [Fatmaamr61](https://github.com/Fatmaamr61)
 
